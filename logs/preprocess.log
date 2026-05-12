@@ -1,0 +1,26 @@
+2026-05-12 11:09:57,306 [INFO] ============================================================
+2026-05-12 11:09:57,306 [INFO] GempaWas — Preprocessing dimulai
+2026-05-12 11:09:57,306 [INFO] ============================================================
+2026-05-12 11:09:57,306 [INFO] Memproses file terbaru: data/raw/gempa_20260512_110527.csv
+2026-05-12 11:09:57,306 [INFO] --------------------------------------------------
+2026-05-12 11:09:57,307 [INFO] Memproses file: gempa_20260512_110527.csv
+2026-05-12 11:09:57,307 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_110527.csv
+2026-05-12 11:09:57,309 [INFO] Loaded: 30 baris, 12 kolom
+2026-05-12 11:09:57,309 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-05-12 11:09:57,309 [INFO] Normalisasi tipe data...
+2026-05-12 11:09:57,326 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-05-12 11:09:57,328 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-05-12 11:09:57,330 [INFO] Deduplikasi: 30 → 30 baris
+2026-05-12 11:09:57,331 [INFO] Menambah fitur turunan dasar...
+2026-05-12 11:09:57,639 [INFO] Data processed disimpan:
+2026-05-12 11:09:57,640 [INFO]   CSV     : data/processed/gempa_20260512_110527_processed.csv
+2026-05-12 11:09:57,640 [INFO]   Parquet : data/processed/gempa_20260512_110527_processed.parquet
+2026-05-12 11:09:57,640 [INFO] ==================================================
+2026-05-12 11:09:57,640 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_110527.csv
+2026-05-12 11:09:57,640 [INFO]   Total baris bersih : 30
+2026-05-12 11:09:57,640 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-05-12 11:09:57,641 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-05-12 11:09:57,641 [INFO]   Sumber data        : ['USGS', 'BMKG-terkini', 'BMKG-dirasakan']
+2026-05-12 11:09:57,641 [INFO]   Zona sesar         : {'Lainnya_Papua': 11, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-05-12 11:09:57,642 [INFO] ==================================================
+2026-05-12 11:09:57,642 [INFO] Preprocessing selesai.

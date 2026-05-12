@@ -1,0 +1,69 @@
+2026-05-12 11:00:30,986 [INFO] ============================================================
+2026-05-12 11:00:30,986 [INFO] GempaWas — Data Ingestion dimulai
+2026-05-12 11:00:30,986 [INFO] Mode: DRY-RUN | Jendela USGS: 2 jam
+2026-05-12 11:00:30,986 [INFO] ============================================================
+2026-05-12 11:00:30,987 [INFO] [USGS] Fetching 2 jam terakhir (2026-05-12 09:00:30.987041+00:00 → 2026-05-12 11:00:30.987041+00:00)
+2026-05-12 11:00:31,893 [INFO] [USGS] Berhasil mengambil 0 event.
+2026-05-12 11:00:31,926 [INFO] [BMKG] Fetching endpoint: terkini
+2026-05-12 11:00:31,986 [INFO] [BMKG] Endpoint terkini: 15 event diproses.
+2026-05-12 11:00:31,988 [INFO] [BMKG] Fetching endpoint: dirasakan
+2026-05-12 11:00:32,129 [INFO] [BMKG] Endpoint dirasakan: 30 event diproses.
+2026-05-12 11:00:32,183 [INFO] Deduplikasi: 30 → 29 baris (duplikat dihapus: 1)
+2026-05-12 11:00:32,185 [INFO] [DRY-RUN] Tidak ada file yang disimpan. Preview 5 baris teratas:
+2026-05-12 11:00:32,195 [INFO] ============================================================
+2026-05-12 11:00:32,195 [INFO] Ingestion selesai. Total event: 29
+2026-05-12 11:00:32,195 [INFO]   - USGS : 0 event
+2026-05-12 11:00:32,195 [INFO]   - BMKG : 30 event
+2026-05-12 11:00:32,195 [INFO] ============================================================
+2026-05-12 11:03:45,513 [INFO] ============================================================
+2026-05-12 11:03:45,514 [INFO] GempaWas — Data Ingestion dimulai
+2026-05-12 11:03:45,514 [INFO] Mode: DRY-RUN | Jendela USGS: 24 jam
+2026-05-12 11:03:45,514 [INFO] ============================================================
+2026-05-12 11:03:45,514 [INFO] [USGS] Fetching 24 jam terakhir (2026-05-11 11:03:45.514419+00:00 → 2026-05-12 11:03:45.514419+00:00)
+2026-05-12 11:03:46,194 [INFO] [USGS] Berhasil mengambil 1 event.
+2026-05-12 11:03:46,196 [INFO] [BMKG] Fetching endpoint: terkini
+2026-05-12 11:03:46,243 [INFO] [BMKG] Endpoint terkini: 15 event diproses.
+2026-05-12 11:03:46,244 [INFO] [BMKG] Fetching endpoint: dirasakan
+2026-05-12 11:03:46,288 [INFO] [BMKG] Endpoint dirasakan: 30 event diproses.
+2026-05-12 11:03:46,291 [INFO] Deduplikasi: 31 → 30 baris (duplikat dihapus: 1)
+2026-05-12 11:03:46,292 [INFO] [DRY-RUN] Tidak ada file yang disimpan. Preview 5 baris teratas:
+2026-05-12 11:03:46,297 [INFO] ============================================================
+2026-05-12 11:03:46,297 [INFO] Ingestion selesai. Total event: 30
+2026-05-12 11:03:46,297 [INFO]   - USGS : 1 event
+2026-05-12 11:03:46,297 [INFO]   - BMKG : 30 event
+2026-05-12 11:03:46,297 [INFO] ============================================================
+2026-05-12 11:04:44,261 [INFO] ============================================================
+2026-05-12 11:04:44,261 [INFO] GempaWas — Data Ingestion dimulai
+2026-05-12 11:04:44,261 [INFO] Mode: DRY-RUN | Jendela USGS: 2 jam
+2026-05-12 11:04:44,262 [INFO] ============================================================
+2026-05-12 11:04:44,262 [INFO] [USGS] Fetching 2 jam terakhir (2026-05-12 09:04:44.262087+00:00 → 2026-05-12 11:04:44.262087+00:00)
+2026-05-12 11:04:45,182 [INFO] [USGS] Berhasil mengambil 0 event.
+2026-05-12 11:04:45,185 [INFO] [BMKG] Fetching endpoint: terkini
+2026-05-12 11:04:45,231 [INFO] [BMKG] Endpoint terkini: 15 event diproses.
+2026-05-12 11:04:45,231 [INFO] [BMKG] Fetching endpoint: dirasakan
+2026-05-12 11:04:45,291 [INFO] [BMKG] Endpoint dirasakan: 30 event diproses.
+2026-05-12 11:04:45,294 [INFO] Deduplikasi: 30 → 29 baris (duplikat dihapus: 1)
+2026-05-12 11:04:45,295 [INFO] [DRY-RUN] Tidak ada file yang disimpan. Preview 5 baris teratas:
+2026-05-12 11:04:45,300 [INFO] ============================================================
+2026-05-12 11:04:45,300 [INFO] Ingestion selesai. Total event: 29
+2026-05-12 11:04:45,300 [INFO]   - USGS : 0 event
+2026-05-12 11:04:45,300 [INFO]   - BMKG : 30 event
+2026-05-12 11:04:45,300 [INFO] ============================================================
+2026-05-12 11:05:26,389 [INFO] ============================================================
+2026-05-12 11:05:26,389 [INFO] GempaWas — Data Ingestion dimulai
+2026-05-12 11:05:26,389 [INFO] Mode: NORMAL | Jendela USGS: 24 jam
+2026-05-12 11:05:26,389 [INFO] ============================================================
+2026-05-12 11:05:26,389 [INFO] [USGS] Fetching 24 jam terakhir (2026-05-11 11:05:26.389788+00:00 → 2026-05-12 11:05:26.389788+00:00)
+2026-05-12 11:05:27,444 [INFO] [USGS] Berhasil mengambil 1 event.
+2026-05-12 11:05:27,446 [INFO] [BMKG] Fetching endpoint: terkini
+2026-05-12 11:05:27,496 [INFO] [BMKG] Endpoint terkini: 15 event diproses.
+2026-05-12 11:05:27,496 [INFO] [BMKG] Fetching endpoint: dirasakan
+2026-05-12 11:05:27,611 [INFO] [BMKG] Endpoint dirasakan: 30 event diproses.
+2026-05-12 11:05:27,616 [INFO] Deduplikasi: 31 → 30 baris (duplikat dihapus: 1)
+2026-05-12 11:05:27,699 [INFO] Data mentah disimpan ke: data/raw/gempa_20260512_110527.csv (30 baris)
+2026-05-12 11:05:27,702 [INFO] Manifest diperbarui: data/raw/ingestion_manifest.csv
+2026-05-12 11:05:27,702 [INFO] ============================================================
+2026-05-12 11:05:27,702 [INFO] Ingestion selesai. Total event: 30
+2026-05-12 11:05:27,703 [INFO]   - USGS : 1 event
+2026-05-12 11:05:27,703 [INFO]   - BMKG : 30 event
+2026-05-12 11:05:27,703 [INFO] ============================================================

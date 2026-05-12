@@ -1,7 +1,5 @@
-# =============================================================================
 # Dev-only dependencies (selain yang ada di requirements.txt)
-# Install dengan: pip install -r requirements-dev.txt
-# =============================================================================
+# Install: pip install -r requirements-dev.txt
 
 # Linting & formatting
 ruff>=0.4.0

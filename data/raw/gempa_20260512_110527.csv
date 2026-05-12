@@ -1,0 +1,31 @@
+event_id,source,time_utc,latitude,longitude,depth_km,magnitude,magnitude_type,place,felt_intensity,status,ingested_at
+BMKG-2026-04-17T22:19:22+00:00-5.1,BMKG-terkini,2026-04-17T22:19:22+00:00,-6.1,131.32,99.0,5.1,M,164 km BaratDaya MALUKUTENGGARA,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-17T23:21:27+00:00-5.8,BMKG-terkini,2026-04-17T23:21:27+00:00,-0.1,123.9,102.0,5.8,M,53 km BaratDaya BOLAANGUKI-BOLSEL-SULUT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-18T20:06:49+00:00-5.9,BMKG-terkini,2026-04-18T20:06:49+00:00,1.14,97.04,10.0,5.9,M,48 km BaratDaya NIASUTARA-SUMUT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-20T05:19:37+00:00-5.1,BMKG-terkini,2026-04-20T05:19:37+00:00,-8.01,124.38,173.0,5.1,M,36 km BaratLaut ALOR-NTT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-20T18:47:06+00:00-5.4,BMKG-terkini,2026-04-20T18:47:06+00:00,-2.03,139.25,10.0,5.4,M,57 km Tenggara SARMI-PAPUA,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-21T03:17:08+00:00-6.0,BMKG-terkini,2026-04-21T03:17:08+00:00,-8.99,124.2,31.0,6.0,M,67 km BaratLaut TIMORTENGAHUT-NTT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-23T22:13:25+00:00-5.1,BMKG-terkini,2026-04-23T22:13:25+00:00,-7.42,129.28,143.0,5.1,M,184 km TimurLaut MALUKUBRTDAYA,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-24T04:45:19+00:00-5.0,BMKG-terkini,2026-04-24T04:45:19+00:00,1.18,126.42,12.0,5.0,M,114 km BaratLaut TERNATE-MALUT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-04-25T09:07:07+00:00-5.2,BMKG-terkini,2026-04-25T09:07:07+00:00,-4.95,130.63,119.0,5.2,M,205 km Tenggara SERAMBAGIANTIMUR-MALUKU,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-01T09:24:24+00:00-5.1,BMKG-terkini,2026-05-01T09:24:24+00:00,-1.31,134.4,12.0,5.1,M,33 km TimurLaut RANSIKI-PAPUABRT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-01T18:52:47+00:00-5.1,BMKG-terkini,2026-05-01T18:52:47+00:00,-7.52,128.53,199.0,5.1,M,107 km TimurLaut MALUKUBRTDAYA,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-02T10:27:11+00:00-5.6,BMKG-terkini,2026-05-02T10:27:11+00:00,-5.64,130.92,114.0,5.6,M,201 km BaratLaut MALUKUTENGGARA,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-03T16:51:56+00:00-4.6,BMKG-dirasakan,2026-05-03T16:51:56+00:00,1.15,126.81,39.0,4.6,M,Pusat gempa berada di laut 74 km barat Jailolo,II-III Kota Ternate,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-03T19:06:13+00:00-4.0,BMKG-dirasakan,2026-05-03T19:06:13+00:00,-8.25,108.27,29.0,4.0,M,Pusat gempa berada di laut 66 km selatan Kab. Pangandaran,"II-III Banjarwangi, II-III Manonjaya, II-III Singaparna, II-III Cikatomas, II-III Sukaramet, II-III Cimaragas, II-III Banjaranyar, II-III Banjarsari, II-III Pangandaran",reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-04T00:56:54+00:00-2.8,BMKG-dirasakan,2026-05-04T00:56:54+00:00,-7.17,107.83,4.0,2.8,M,Pusat gempa berada di darat 9 km barat laut Kab. Garut,"II-III Kamojang, II-III Leles, II-III Tarogong, II-III Bayongbong, II-III Banyuresmi, II-III Samarang, II-III Kadungora, II-III Sukaresmi, II-III Nagrek",reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-04T03:37:09+00:00-4.4,BMKG-dirasakan,2026-05-04T03:37:09+00:00,3.13,126.54,67.0,4.4,M,Pusat gempa berada di laut 98 km selatan Melonguane,II-III Naha,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-04T05:09:03+00:00-2.5,BMKG-dirasakan,2026-05-04T05:09:03+00:00,4.74,96.72,5.0,2.5,M,Pusat gempa berada di darat 16 km barat Bener Meriah,II-III Bener Meriah,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-04T05:56:11+00:00-3.2,BMKG-dirasakan,2026-05-04T05:56:11+00:00,4.74,96.77,10.0,3.2,M,Pusat gempa berada di darat 10 km Barat Bener Meriah,III Bener Meriah,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-04T22:14:39+00:00-4.2,BMKG-dirasakan,2026-05-04T22:14:39+00:00,-8.08,107.92,14.0,4.2,M,Pusat gempa berada di laut 76 km barat daya Kabupaten Pangandaran,"III Cipatujah, III Langkaplancar, II-III Kota Tasikmalaya, II-III Cikoneng, Ciamis, III Pangandaran, II-III Puspahiang, II-III Kota Banjar",reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-05T02:38:50+00:00-5.3,BMKG-terkini,2026-05-05T02:38:50+00:00,-6.41,130.23,188.0,5.3,M,210 km BaratLaut TANIMBAR,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-05T06:44:50+00:00-6.0,BMKG-terkini,2026-05-05T06:44:50+00:00,-10.11,119.3,10.0,6.0,M,37 km BaratDaya WANOKAKA-NTT,,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-05T13:17:30+00:00-2.0,BMKG-dirasakan,2026-05-05T13:17:30+00:00,-5.44,104.65,10.0,2.0,M,Pusat gempa berada di darat 6 km barat laut Tanggamus,II Gisting,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-07T06:17:45+00:00-2.9,BMKG-dirasakan,2026-05-07T06:17:45+00:00,-4.8,122.65,2.0,2.9,M,Pusat gempa berada di darat 7 km barat Muna,II-III Muna Barat,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-09T00:10:29+00:00-4.6,BMKG-dirasakan,2026-05-09T00:10:29+00:00,-1.89,139.19,10.0,4.6,M,Pusat gempa berada di laut 48 km tenggara Sarmi,II Sarmi,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-10T06:24:55+00:00-3.0,BMKG-dirasakan,2026-05-10T06:24:55+00:00,3.57,98.74,8.0,3.0,M,Pusat gempa berada di darat 15 km barat Deli Serdang,II Medan,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-10T12:24:33+00:00-4.8,BMKG-dirasakan,2026-05-10T12:24:33+00:00,1.2,120.33,8.0,4.8,M,Pusat gempa berada di laut 60 km barat laut Toli-Toli,"II-III Tolitoli, II-III Buol",reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-11T13:40:41+00:00-2.4,BMKG-dirasakan,2026-05-11T13:40:41+00:00,-4.06,121.87,9.0,2.4,M,Pusat gempa berada di darat 6 km Selatan KOLAKATIMUR,"II-III Kolaka Timur, II-III Kolaka",reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-11T21:06:20+00:00-2.9,BMKG-dirasakan,2026-05-11T21:06:20+00:00,-4.08,121.79,10.0,2.9,M,Pusat gempa berada di darat 12 km barat daya Kolaka Timur,"III Kolaka Timur, II-III Kolaka",reviewed,2026-05-12T11:05:27+00:00
+us6000sx3v,USGS,2026-05-12T08:53:56+00:00,4.8333,127.5121,108.574,5.0,mb,"224 km SE of Pondaguitan, Philippines",,reviewed,2026-05-12T11:05:27+00:00
+BMKG-2026-05-12T08:54:00+00:00-5.3,BMKG-terkini,2026-05-12T08:54:00+00:00,4.64,127.35,89.0,5.3,M,32 km Tenggara PULAUKARATUNG-SULUT,,reviewed,2026-05-12T11:05:27+00:00
