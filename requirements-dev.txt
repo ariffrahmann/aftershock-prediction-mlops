@@ -1,0 +1,28 @@
+# =============================================================================
+# Dev-only dependencies (selain yang ada di requirements.txt)
+# Install dengan: pip install -r requirements-dev.txt
+# =============================================================================
+
+# Linting & formatting
+ruff>=0.4.0
+mypy>=1.10.0
+
+# Pre-commit
+pre-commit>=3.7.0
+
+# Testing extras
+pytest-mock>=3.12.0
+pytest-asyncio>=0.23.0
+httpx>=0.27.0          # untuk testing FastAPI client
+freezegun>=1.4.0       # untuk mock waktu di test
+
+# Documentation
+mkdocs>=1.5.0
+mkdocs-material>=9.5.0
+
+# Notebook quality
+nbqa>=1.7.0
+
+# Build
+build>=1.0.0
+twine>=5.0.0
