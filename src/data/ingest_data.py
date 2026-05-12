@@ -1,26 +1,3 @@
-"""
-GempaWas — LK-04: Data Ingestion Script
-========================================
-Skrip pengumpul data otomatis dari dua sumber data dinamis:
-  1. USGS Earthquake API  (sumber utama, coverage global)
-  2. BMKG Open API        (sumber pelengkap, lokal Indonesia)
-
-Sesuai LK-03, kedua sumber ini dipilih karena:
-  - Near real-time (data baru tersedia 5–15 menit setelah kejadian)
-  - Tidak memerlukan autentikasi
-  - Lisensi publik/open data
-
-Cara menjalankan:
-  python src/data/ingest_data.py                  # ambil 2 jam terakhir
-  python src/data/ingest_data.py --hours 24        # ambil 24 jam terakhir
-  python src/data/ingest_data.py --hours 48 --dry-run  # simulasi tanpa simpan
-
-Simulasi Periodik (Continual Learning):
-  Setiap kali skrip dijalankan, file baru disimpan dengan nama:
-    data/raw/gempa_YYYYMMDD_HHMMSS.csv
-  sehingga data lama TIDAK tertimpa (non-destruktif).
-"""
-
 import argparse
 import logging
 import sys
