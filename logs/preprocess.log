@@ -24,3 +24,29 @@
 2026-05-12 11:09:57,641 [INFO]   Zona sesar         : {'Lainnya_Papua': 11, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
 2026-05-12 11:09:57,642 [INFO] ==================================================
 2026-05-12 11:09:57,642 [INFO] Preprocessing selesai.
+2026-05-12 15:38:29,491 [INFO] ============================================================
+2026-05-12 15:38:29,495 [INFO] GempaWas — Preprocessing dimulai
+2026-05-12 15:38:29,495 [INFO] ============================================================
+2026-05-12 15:38:29,495 [INFO] Memproses file terbaru: data/raw/gempa_20260512_153811.csv
+2026-05-12 15:38:29,496 [INFO] --------------------------------------------------
+2026-05-12 15:38:29,496 [INFO] Memproses file: gempa_20260512_153811.csv
+2026-05-12 15:38:29,496 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_153811.csv
+2026-05-12 15:38:29,502 [INFO] Loaded: 30 baris, 12 kolom
+2026-05-12 15:38:29,502 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-05-12 15:38:29,502 [INFO] Normalisasi tipe data...
+2026-05-12 15:38:29,518 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-05-12 15:38:29,521 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-05-12 15:38:29,523 [INFO] Deduplikasi: 30 → 30 baris
+2026-05-12 15:38:29,523 [INFO] Menambah fitur turunan dasar...
+2026-05-12 15:38:29,814 [INFO] Data processed disimpan:
+2026-05-12 15:38:29,814 [INFO]   CSV     : data/processed/gempa_20260512_153811_processed.csv
+2026-05-12 15:38:29,814 [INFO]   Parquet : data/processed/gempa_20260512_153811_processed.parquet
+2026-05-12 15:38:29,814 [INFO] ==================================================
+2026-05-12 15:38:29,814 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_153811.csv
+2026-05-12 15:38:29,814 [INFO]   Total baris bersih : 30
+2026-05-12 15:38:29,815 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-05-12 15:38:29,815 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-05-12 15:38:29,815 [INFO]   Sumber data        : ['USGS', 'BMKG-terkini', 'BMKG-dirasakan']
+2026-05-12 15:38:29,816 [INFO]   Zona sesar         : {'Lainnya_Papua': 11, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-05-12 15:38:29,816 [INFO] ==================================================
+2026-05-12 15:38:29,816 [INFO] Preprocessing selesai.
