@@ -1,0 +1,5 @@
+outs:
+- md5: bd56e25f9ad1342ed83c703a9e8b65b1
+  size: 13902
+  hash: md5
+  path: gempa_20260512_153811_processed.parquet

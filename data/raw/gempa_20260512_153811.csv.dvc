@@ -1,0 +1,5 @@
+outs:
+- md5: 3d13e42d6a473fcd2999025ca96a6270
+  size: 6059
+  hash: md5
+  path: gempa_20260512_153811.csv
