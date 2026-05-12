@@ -1,0 +1,5 @@
+outs:
+- md5: cc1c1fe8950d58a46d27c7e1b487ca10
+  size: 101
+  hash: md5
+  path: ingestion_manifest.csv
