@@ -1,0 +1,8 @@
+artifact_location: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838
+creation_time: 1778780187075
+experiment_id: '146410740840464838'
+last_update_time: 1778780187075
+lifecycle_stage: active
+name: gempawas-aftershock-prediction
+trace_location: null
+workspace: default
