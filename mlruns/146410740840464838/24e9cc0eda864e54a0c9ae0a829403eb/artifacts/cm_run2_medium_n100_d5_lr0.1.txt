@@ -1,0 +1,6 @@
+Confusion Matrix (run: run2_medium_n100_d5_lr0.1)
+
+               Predicted
+                No   Yes
+Actual No      319   112
+       Yes      42    38

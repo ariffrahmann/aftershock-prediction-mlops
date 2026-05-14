@@ -1,0 +1,27 @@
+2026-05-14 14:26:05,029 [INFO] Loading 3 processed files
+2026-05-14 14:26:05,058 [INFO] Total unique events: 3885
+2026-05-14 14:26:05,059 [INFO] Rentang waktu: 2024-05-14 15:36:36+00:00 s.d. 2026-05-14 06:27:35+00:00
+2026-05-14 14:26:05,061 [INFO] Distribusi magnitude:
+count    3885.000000
+mean        4.484093
+std         0.366903
+min         2.000000
+25%         4.300000
+50%         4.400000
+75%         4.600000
+max         7.400000
+2026-05-14 14:26:05,062 [INFO] Candidates M>=5.0: 384 events
+2026-05-14 14:26:05,395 [INFO] Mainshocks teridentifikasi: 292
+2026-05-14 14:26:11,216 [INFO] Training dataset: 2044 rows (= 292 mainshock × 7 snapshot_times)
+2026-05-14 14:26:11,217 [INFO] Distribusi label:
+label_susulan_besar_24jam
+0    1725
+1     319
+Name: count, dtype: int64
+2026-05-14 14:26:11,218 [INFO] Positive ratio: 15.61% (319 / 2044)
+2026-05-14 14:26:11,260 [INFO] ============================================================
+2026-05-14 14:26:11,260 [INFO] FEATURES BERHASIL DIBANGUN
+2026-05-14 14:26:11,260 [INFO] ============================================================
+2026-05-14 14:26:11,260 [INFO] Output Parquet : data/processed/features.parquet (2044 rows, 23.5 KB)
+2026-05-14 14:26:11,260 [INFO] Output CSV     : data/processed/features.csv
+2026-05-14 14:26:11,260 [INFO] ============================================================

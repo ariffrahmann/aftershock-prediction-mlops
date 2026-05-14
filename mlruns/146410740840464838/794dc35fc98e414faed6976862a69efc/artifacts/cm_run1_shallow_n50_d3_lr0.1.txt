@@ -1,0 +1,6 @@
+Confusion Matrix (run: run1_shallow_n50_d3_lr0.1)
+
+               Predicted
+                No   Yes
+Actual No      319   112
+       Yes      36    44
