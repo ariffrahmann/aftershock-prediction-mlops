@@ -1,52 +1,32 @@
 {
-  "model_name": "gempawas-aftershock-classifier",
-  "created_at": "2026-05-15T05:27:39.772778",
-  "primary_metric": "pr_auc",
-  "metrics_rationale": {
-    "pr_auc": "PRIMARY \u2014 tidak terpengaruh TN besar, jujur untuk imbalanced",
-    "f1_score": "BALANCE \u2014 harmonic mean precision & recall",
-    "recall": "CRITICAL \u2014 di domain gempa, miss lebih bahaya dari false alarm"
-  },
-  "production_model": {
+  "current_staging": {
+    "model_name": "gempawas-aftershock-classifier",
     "version": 1,
-    "run_id": "8ce77fa8ff5e415caf239fee53002d3a",
-    "stage": "Production",
-    "params": {
-      "max_depth": "4",
-      "threshold": "0.45",
-      "colsample_bytree": "0.8",
-      "resampling": "SMOTETomek",
-      "subsample": "0.8",
-      "gamma": "0.5",
-      "model_type": "XGBoost",
-      "learning_rate": "0.05",
-      "version": "v1",
-      "min_child_weight": "5",
-      "lk_source": "LK-06 run2_smote_tuned_n200_d4",
-      "n_estimators": "200"
-    },
+    "stage": "Staging",
+    "promoted_at": "2026-05-15T10:58:03.074475+00:00",
+    "mlflow_run_id": "efef3b2755e64243bf8f26242da72e20",
+    "git_commit": "4e08579b616e",
+    "git_branch": "feat/lk08",
     "metrics": {
-      "pr_auc": 0.4809,
-      "f1_score": 0.3981,
-      "recall": 0.5125
-    }
+      "pr_auc": 0.4809
+    },
+    "promoted_by": "ariffrahmann",
+    "workflow_run_id": "25914010729"
   },
-  "data_lineage": {
-    "features_path": "data/processed/features.parquet",
-    "feature_columns": [
-      "mainshock_magnitude",
-      "mainshock_depth",
-      "jam_sejak_mainshock",
-      "count_susulan_1jam",
-      "count_susulan_6jam",
-      "count_susulan_24jam",
-      "max_mag_susulan_6jam",
-      "max_mag_susulan_24jam",
-      "omori_rate_est",
-      "zona_sesar"
-    ],
-    "target_column": "label_susulan_besar_24jam",
-    "split_strategy": "time-based (75% train, 25% test)",
-    "resampling": "SMOTETomek (hanya pada train set)"
-  }
+  "history": [
+    {
+      "model_name": "gempawas-aftershock-classifier",
+      "version": 1,
+      "stage": "Staging",
+      "promoted_at": "2026-05-15T10:58:03.074475+00:00",
+      "mlflow_run_id": "efef3b2755e64243bf8f26242da72e20",
+      "git_commit": "4e08579b616e",
+      "git_branch": "feat/lk08",
+      "metrics": {
+        "pr_auc": 0.4809
+      },
+      "promoted_by": "ariffrahmann",
+      "workflow_run_id": "25914010729"
+    }
+  ]
 }

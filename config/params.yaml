@@ -81,3 +81,10 @@ serving:
     tinggi: 0.7
     sedang: 0.4
     # rendah = di bawah sedang
+
+ci_thresholds:
+  pr_auc_min: 0.35
+  f1_min: 0.30
+  recall_min: 0.40
+  model_name: "gempawas-aftershock-classifier"
+  auto_register_stage: "Staging"

@@ -1,0 +1,231 @@
+name: MLOps Automation (LK-08)
+
+on:
+  push:
+    branches: [main, master, feat/lk08, "feat/**"]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:  # bisa trigger manual dari GitHub UI
+
+# Threshold dari LK-01 (Definition of Done untuk Production)
+env:
+  PYTHON_VERSION: "3.12"
+  PR_AUC_THRESHOLD: "0.45"
+  F1_THRESHOLD: "0.35"
+  RECALL_THRESHOLD: "0.40"
+  MODEL_NAME: "gempawas-aftershock-classifier"
+
+jobs:
+  # STAGE 1: AUTOMATED TESTING
+  test:
+    name: "Stage 1: Automated Testing (pytest)"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+
+      - name: Run pytest
+        run: |
+          echo "=== STAGE 1: Automated Testing ==="
+          pytest tests/ -v --tb=short --no-header
+        env:
+          PYTHONUNBUFFERED: 1
+
+  # STAGE 2: AUTOMATED TRAINING
+  train:
+    name: "Stage 2: Automated Training (train.py + DVC)"
+    runs-on: ubuntu-latest
+    needs: test  # hanya jalan kalau test lulus
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install "dvc[gs]" || pip install dvc
+
+      - name: 🧹 Clean stale mlruns from previous environment
+        run: |
+          rm -rf mlruns/
+          rm -rf .mlruns_cache/
+          echo "✓ Stale mlruns cleaned"
+
+      - name: 📥 Pull data from DVC
+        # Kalau remote DVC sudah di-setup (GCS/local), pull data
+        # Fallback: pakai data yang sudah commited (kalau ada di repo)
+        run: |
+          if [ -d ".dvc" ]; then
+            dvc pull --quiet || echo "⚠ DVC pull gagal, lanjut dengan data lokal"
+          fi
+          ls -la data/processed/ || echo "⚠ data/processed/ belum ada"
+
+      - name: 🏗️ Build features if needed
+        run: |
+          if [ ! -f "data/processed/features.parquet" ]; then
+            echo "features.parquet belum ada, build dulu..."
+            python src/build_features.py || echo "build_features gagal"
+          fi
+
+      - name: 🚂 Run training (3 variations)
+        run: |
+          echo "=== STAGE 2: Automated Training ==="
+          echo "Melatih 3 variasi model..."
+          python src/train.py --variations
+        env:
+          PYTHONUNBUFFERED: 1
+          MLFLOW_TRACKING_URI: file:./mlruns
+
+      - name: 📦 Upload mlruns artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mlruns-${{ github.run_id }}
+          path: mlruns/
+          retention-days: 14
+
+      - name: 📋 Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-logs-${{ github.run_id }}
+          path: logs/
+          retention-days: 7
+
+  # STAGE 3: MODEL EVALUATION & VALIDATION
+  evaluate:
+    name: "Stage 3: Model Evaluation vs Threshold (LK-01)"
+    runs-on: ubuntu-latest
+    needs: train
+    timeout-minutes: 10
+    outputs:
+      passed: ${{ steps.eval.outputs.passed }}
+      best_run_id: ${{ steps.eval.outputs.best_run_id }}
+      pr_auc: ${{ steps.eval.outputs.pr_auc }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          pip install --quiet mlflow pandas
+
+      - name: 📥 Download mlruns artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mlruns-${{ github.run_id }}
+          path: mlruns/
+
+      - name: 🔍 Evaluate best model vs LK-01 threshold
+        id: eval
+        run: |
+          echo "=== STAGE 3: Model Evaluation ==="
+          python scripts/validate_threshold.py \
+            --pr-auc-min ${{ env.PR_AUC_THRESHOLD }} \
+            --f1-min ${{ env.F1_THRESHOLD }} \
+            --recall-min ${{ env.RECALL_THRESHOLD }}
+
+  # STAGE 4: AUTO-REGISTRY UPDATE
+  register:
+    name: "Stage 4: Auto-Register to Staging"
+    runs-on: ubuntu-latest
+    needs: evaluate
+    if: needs.evaluate.outputs.passed == 'true'  # hanya jalan kalau lolos validasi
+    timeout-minutes: 10
+    permissions:
+      contents: write  # untuk commit metadata registry
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install --quiet mlflow xgboost
+
+      - name: 📥 Download mlruns artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mlruns-${{ github.run_id }}
+          path: mlruns/
+
+      - name: 🏷️ Register to Staging
+        run: |
+          echo "=== STAGE 4: Auto-Registry Update ==="
+          python scripts/auto_register.py \
+            --run-id "${{ needs.evaluate.outputs.best_run_id }}" \
+            --model-name "${{ env.MODEL_NAME }}" \
+            --stage "Staging" \
+            --pr-auc "${{ needs.evaluate.outputs.pr_auc }}"
+
+      - name: 💾 Commit registry metadata
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -f models/model_registry_metadata.json ]; then
+            git add models/model_registry_metadata.json
+            git commit -m "ci(registry): auto-promote ${{ env.MODEL_NAME }} to Staging [skip ci]" || echo "Nothing to commit"
+            git push || echo "Push gagal (mungkin no permission atau no changes)"
+          fi
+
+  # SUMMARY
+  summary:
+    name: "📊 Pipeline Summary"
+    runs-on: ubuntu-latest
+    needs: [test, train, evaluate, register]
+    if: always()
+    steps:
+      - name: Print summary
+        run: |
+          echo "=========================================="
+          echo "  MLOPS AUTOMATION PIPELINE — LK-08"
+          echo "=========================================="
+          echo "Stage 1 — Test     : ${{ needs.test.result }}"
+          echo "Stage 2 — Train    : ${{ needs.train.result }}"
+          echo "Stage 3 — Evaluate : ${{ needs.evaluate.result }}"
+          echo "Stage 4 — Register : ${{ needs.register.result }}"
+          echo "=========================================="
+          echo "Trigger        : ${{ github.event_name }}"
+          echo "Branch         : ${{ github.ref_name }}"
+          echo "Commit         : ${{ github.sha }}"
+          echo "Threshold check: ${{ needs.evaluate.outputs.passed }}"
+          echo "Best PR-AUC    : ${{ needs.evaluate.outputs.pr_auc }}"
+          echo "=========================================="
