@@ -1,0 +1,43 @@
+services:
+  # SERVICE 1: Database Metadata (PostgreSQL)
+  db:
+    image: postgres:15
+    container_name: gempawas_postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password123
+      POSTGRES_DB: mlflow_db
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
+  # SERVICE 2: MLflow Tracking Server
+  mlflow-server:
+    image: python:3.10-slim
+    container_name: gempawas_mlflow
+    command: bash -c "pip install mlflow==2.10.2 psycopg2-binary && mlflow server
+     --backend-store-uri postgresql://admin:password123@db:5432/mlflow_db 
+     --default-artifact-root /mlflow/artifacts 
+     --host 0.0.0.0 
+     --port 5000"
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    volumes:
+      - mlflow-data:/mlflow/artifacts
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
+# CUSTOM BRIDGE NETWORK
+networks:
+  gempawas-network:
+    driver: bridge
+
+# PERSISTENT VOLUMES
+volumes:
+  pg-data:
+  mlflow-data:
