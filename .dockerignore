@@ -1,0 +1,51 @@
+# Files yang tidak perlu ikut ke Docker context 
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Data & models
+data/raw/
+data/interim/
+data/processed/
+mlruns/
+mlartifacts/
+*.db
+*.sqlite
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docs / tests 
+docs/
+tests/
+notebooks/
+reports/
+*.md
+LICENSE
+
+# Logs
+logs/
+*.log
+
+# DVC
+.dvc/cache
+.dvc/tmp

@@ -7,7 +7,7 @@ on:
     branches: [main, master]
   workflow_dispatch:  # bisa trigger manual dari GitHub UI
 
-# Threshold dari LK-01 (Definition of Done untuk Production)
+# Threshold dari LK-01 
 env:
   PYTHON_VERSION: "3.12"
   PR_AUC_THRESHOLD: "0.45"
