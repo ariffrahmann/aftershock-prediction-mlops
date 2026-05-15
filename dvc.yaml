@@ -1,0 +1,12 @@
+# DVC Pipeline — GempaWas Model Registry (LK-07)
+
+stages:
+  train_and_register:
+    cmd: python src/model_registry.py
+    deps:
+      - src/model_registry.py
+      - data/processed/features.parquet
+      - config/params.yaml
+    outs:
+      - models/model_registry_metadata.json
+      - logs/model_registry.log

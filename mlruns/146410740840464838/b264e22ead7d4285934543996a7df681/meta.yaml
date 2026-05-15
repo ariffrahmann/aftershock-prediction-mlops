@@ -1,0 +1,14 @@
+artifact_uri: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/b264e22ead7d4285934543996a7df681/artifacts
+end_time: 1778822764084
+entry_point_name: ''
+experiment_id: '146410740840464838'
+lifecycle_stage: active
+run_id: b264e22ead7d4285934543996a7df681
+run_name: run3_smotetomek_thresh040
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778822759543
+status: 3
+tags: []
+user_id: codespace

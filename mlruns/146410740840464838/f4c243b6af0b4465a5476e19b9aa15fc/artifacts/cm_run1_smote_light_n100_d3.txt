@@ -1,0 +1,8 @@
+Confusion Matrix (run: run1_smote_light_n100_d3)
+
+               Predicted
+                No   Yes
+Actual No      333    98
+       Yes      41    39
+
+→ Missed aftershock (FN): 41  ← harus sekecil mungkin!

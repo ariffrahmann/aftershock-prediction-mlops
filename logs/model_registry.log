@@ -1,0 +1,229 @@
+2026-05-14 22:52:22,519 [INFO] 🚀 Memulai LK-07: Model Registry, Versioning & Inferensi
+2026-05-14 22:52:22,519 [INFO]    MLflow Tracking URI : file:./mlruns
+2026-05-14 22:52:22,520 [INFO]    Experiment Name     : gempawas-aftershock-prediction
+2026-05-14 22:52:22,520 [INFO]    Model Registry Name : gempawas-aftershock-classifier
+2026-05-14 22:52:22,773 [INFO] ✓ Data dimuat: 2044 baris, 14 kolom
+2026-05-14 22:52:22,780 [INFO]   Train: 1533 | Test: 511
+2026-05-14 22:52:22,781 [INFO] 
+=================================================================
+2026-05-14 22:52:22,781 [INFO] LANGKAH 1: Registrasi Model Terbaik (v1) ke Model Registry
+2026-05-14 22:52:22,781 [INFO] =================================================================
+2026-05-14 22:52:35,651 [INFO]   ✓ Run ID : 490b4f6ea54e435e879473a8e93f0e38
+2026-05-14 22:52:35,652 [INFO]   ✓ Metrics: acc=0.7104 | f1=0.3729 | auc=0.6936
+2026-05-14 22:52:35,652 [INFO]   ✓ Model didaftarkan ke Registry: 'gempawas-aftershock-classifier'
+2026-05-14 22:52:35,657 [INFO] 
+=================================================================
+2026-05-14 22:52:35,657 [INFO] LANGKAH 2: Versioning — Mendaftarkan Model v2
+2026-05-14 22:52:35,657 [INFO] =================================================================
+2026-05-14 22:52:41,283 [INFO]   ✓ Run ID : 22a22c4bee8847c3938ca7235a1f5c90
+2026-05-14 22:52:41,283 [INFO]   ✓ Metrics: acc=0.6947 | f1=0.3500 | auc=0.6550
+2026-05-14 22:52:41,283 [INFO]   ✓ Model v2 didaftarkan ke Registry: 'gempawas-aftershock-classifier'
+2026-05-14 22:52:41,284 [INFO] 
+=================================================================
+2026-05-14 22:52:41,284 [INFO] LANGKAH 3: Transisi Stage Model
+2026-05-14 22:52:41,285 [INFO] =================================================================
+2026-05-14 22:52:41,295 [INFO]   Versi yang ditemukan:
+2026-05-14 22:52:41,295 [INFO]     - v1 | run_id=490b4f6e | stage=None
+2026-05-14 22:52:41,295 [INFO]     - v2 | run_id=22a22c4b | stage=None
+2026-05-14 22:52:41,295 [INFO] 
+  [v1] None → Staging ...
+2026-05-14 22:52:41,817 [INFO]   [v1] Staging → Production ...
+2026-05-14 22:52:42,340 [INFO]   [v2] None → Staging ...
+2026-05-14 22:52:42,862 [INFO] 
+  Mendaftarkan alias modern MLflow 3.x:
+2026-05-14 22:52:42,890 [INFO]     ✓ alias 'champion'   → v1 (Production)
+2026-05-14 22:52:42,891 [INFO]     ✓ alias 'challenger' → v2 (Staging)
+2026-05-14 22:52:42,903 [INFO] 
+  Status akhir setelah transisi:
+2026-05-14 22:52:42,909 [INFO]     v2 → stage=Staging
+2026-05-14 22:52:42,909 [INFO]     v1 → stage=Production
+2026-05-14 22:52:42,909 [INFO] 
+=================================================================
+2026-05-14 22:52:42,909 [INFO] LANGKAH 4: Sinkronisasi Metadata dengan DVC
+2026-05-14 22:52:42,909 [INFO] =================================================================
+2026-05-14 22:52:42,923 [INFO]   ✓ Metadata Registry disimpan: models/model_registry_metadata.json
+2026-05-14 22:52:42,924 [INFO]   ✓ DVC tracking file dibuat: models/champion_model_v1.dvc
+2026-05-14 22:52:42,928 [INFO]   ✓ DVC pipeline (dvc.yaml) dibuat
+2026-05-14 22:52:42,928 [INFO]   ✓ .gitignore untuk folder models/ dibuat
+2026-05-14 22:52:42,929 [INFO] 
+  Ringkasan Data Lineage:
+2026-05-14 22:52:42,929 [INFO]     Data Input  : data/processed/features.parquet
+2026-05-14 22:52:42,929 [INFO]     Model Name  : gempawas-aftershock-classifier v1
+2026-05-14 22:52:42,930 [INFO]     Stage       : Production
+2026-05-14 22:52:42,930 [INFO]     Run ID      : 490b4f6ea54e435e879473a8e93f0e38
+2026-05-14 22:52:42,930 [INFO]     DVC File    : models/champion_model_v1.dvc
+2026-05-14 22:52:42,931 [INFO] 
+=================================================================
+2026-05-14 22:52:42,931 [INFO] LANGKAH 5: Verifikasi Inferensi Model Production
+2026-05-14 22:52:42,931 [INFO] =================================================================
+2026-05-14 22:52:42,951 [INFO]   Model URI : models:/gempawas-aftershock-classifier/Production
+2026-05-14 22:52:42,951 [INFO]   Version   : v1 | Run ID: 490b4f6ea54e
+2026-05-14 22:52:42,951 [INFO] 
+  Memuat model dengan mlflow.pyfunc.load_model ...
+2026-05-14 22:52:43,073 [INFO]   ✓ Model berhasil dimuat!
+2026-05-14 22:52:43,073 [INFO]   ✓ Tipe model : <class 'mlflow.pyfunc.PyFuncModel'>
+2026-05-14 22:52:43,074 [INFO] 
+  Menjalankan prediksi pada data test (511 sampel) ...
+2026-05-14 22:52:43,082 [INFO]   ✓ Prediksi selesai!
+2026-05-14 22:52:43,082 [INFO]   ✓ Accuracy (inferensi) : 0.7104
+2026-05-14 22:52:43,083 [INFO]   ✓ F1-Score (inferensi) : 0.3729
+2026-05-14 22:52:43,087 [INFO] 
+  Contoh Prediksi (5 sampel pertama):
+2026-05-14 22:52:43,088 [INFO]   Sample   Aktual                 Prediksi              
+2026-05-14 22:52:43,088 [INFO]   -------------------------------------------------------
+2026-05-14 22:52:43,092 [INFO]   1        Tidak Ada Susulan      Ada Susulan           
+2026-05-14 22:52:43,092 [INFO]   2        Tidak Ada Susulan      Ada Susulan           
+2026-05-14 22:52:43,093 [INFO]   3        Tidak Ada Susulan      Ada Susulan           
+2026-05-14 22:52:43,093 [INFO]   4        Tidak Ada Susulan      Ada Susulan           
+2026-05-14 22:52:43,093 [INFO]   5        Tidak Ada Susulan      Ada Susulan           
+2026-05-14 22:52:43,093 [INFO] 
+  Simulasi single-instance inference (seperti API endpoint):
+2026-05-14 22:52:43,106 [INFO]   Input features: mainshock_mag=5.2, depth=10.0, jam_sejak=1.0
+2026-05-14 22:52:43,107 [INFO]   Prediksi Risiko Susulan: 🔴 TINGGI — Ada Susulan
+2026-05-14 22:52:43,107 [INFO] 
+  ✓ Verifikasi inferensi BERHASIL — model Production siap digunakan!
+2026-05-14 22:52:43,136 [INFO] 
+=================================================================
+2026-05-14 22:52:43,136 [INFO] RINGKASAN LK-07 — Model Registry, Versioning, Inferensi
+2026-05-14 22:52:43,136 [INFO] =================================================================
+2026-05-14 22:52:43,137 [INFO] 
+📦 Model Registry: 'gempawas-aftershock-classifier'
+2026-05-14 22:52:43,137 [INFO] 
+  Versi yang Terdaftar:
+2026-05-14 22:52:43,137 [INFO]   Version  Stage        Run ID       Accuracy   F1-Score   AUC       
+2026-05-14 22:52:43,137 [INFO]   -----------------------------------------------------------------
+2026-05-14 22:52:43,140 [INFO]   v1       Production   490b4f6e     0.7104     0.3729     0.6936    
+2026-05-14 22:52:43,144 [INFO]   v2       Staging      22a22c4b     0.6947     0.3500     0.6550    
+2026-05-14 22:52:43,144 [INFO] 
+  Alias Modern (MLflow 3.x):
+2026-05-14 22:52:43,144 [INFO]     'challenger' → v2
+2026-05-14 22:52:43,144 [INFO]     'champion' → v1
+2026-05-14 22:52:43,144 [INFO] 
+🎯 Perbandingan Metrik:
+2026-05-14 22:52:43,145 [INFO]   v1 (Production) : acc=0.7104 | f1=0.3729 | auc=0.6936
+2026-05-14 22:52:43,145 [INFO]   v2 (Staging)    : acc=0.6947 | f1=0.3500 | auc=0.6550
+2026-05-14 22:52:43,145 [INFO] 
+✅ Status Checklist LK-07:
+2026-05-14 22:52:43,145 [INFO]   [✓] 1. Registrasi Model v1 ke MLflow Model Registry
+2026-05-14 22:52:43,145 [INFO]   [✓] 2. Versioning — Model v2 didaftarkan sebagai versi baru
+2026-05-14 22:52:43,145 [INFO]   [✓] 3. Transisi Stage: None→Staging→Production (v1) & None→Staging (v2)
+2026-05-14 22:52:43,145 [INFO]   [✓] 4. Sinkronisasi Metadata DVC (models/champion_model_v1.dvc)
+2026-05-14 22:52:43,145 [INFO]   [✓] 5. Verifikasi Inferensi model Production berhasil
+2026-05-14 22:52:43,145 [INFO] 
+🚀 Untuk membuka MLflow UI:
+2026-05-14 22:52:43,146 [INFO]    mlflow ui --host 0.0.0.0 --port 5000
+2026-05-15 05:27:26,765 [INFO] 🚀 Memulai LK-07: Model Registry, Versioning & Inferensi
+2026-05-15 05:27:26,766 [INFO]    3 metrik: pr_auc (primary), f1_score (balance), recall (safety)
+2026-05-15 05:27:26,792 [INFO] ✓ Data: 2044 baris, 14 kolom
+2026-05-15 05:27:26,795 [INFO]   Train: 1533 | Test: 511
+2026-05-15 05:27:26,795 [INFO] 
+============================================================
+2026-05-15 05:27:26,795 [INFO] LANGKAH 1: Registrasi Model Terbaik (v1)
+2026-05-15 05:27:26,796 [INFO] ============================================================
+2026-05-15 05:27:26,814 [INFO]   SMOTETomek: 1533 → 2426 samples
+2026-05-15 05:27:33,683 [INFO]   ✓ Run ID  : 8ce77fa8ff5e415caf239fee53002d3a
+2026-05-15 05:27:33,684 [INFO]   ✓ [1] pr_auc  = 0.4809  (PRIMARY)
+2026-05-15 05:27:33,684 [INFO]   ✓ [2] f1_score= 0.3981  (BALANCE)
+2026-05-15 05:27:33,684 [INFO]   ✓ [3] recall  = 0.5125  (CRITICAL)
+2026-05-15 05:27:33,684 [INFO]   ✓ Registered: 'gempawas-aftershock-classifier'
+2026-05-15 05:27:33,687 [INFO] 
+============================================================
+2026-05-15 05:27:33,687 [INFO] LANGKAH 2: Versioning — Mendaftarkan Model v2
+2026-05-15 05:27:33,687 [INFO] ============================================================
+2026-05-15 05:27:33,705 [INFO]   SMOTETomek: 1533 → 2426 samples
+2026-05-15 05:27:38,151 [INFO]   ✓ Run ID  : d09e6ae42f2442e8a46ea3413155b28e
+2026-05-15 05:27:38,152 [INFO]   ✓ [1] pr_auc  = 0.4809
+2026-05-15 05:27:38,152 [INFO]   ✓ [2] f1_score= 0.4034
+2026-05-15 05:27:38,152 [INFO]   ✓ [3] recall  = 0.5875  (lebih tinggi dari v1 karena threshold lebih rendah)
+2026-05-15 05:27:38,154 [INFO] 
+============================================================
+2026-05-15 05:27:38,154 [INFO] LANGKAH 3: Transisi Stage Model
+2026-05-15 05:27:38,154 [INFO] ============================================================
+2026-05-15 05:27:38,162 [INFO]   Versi ditemukan: [('v1', 'None'), ('v2', 'None')]
+2026-05-15 05:27:38,162 [INFO]   [v1] None → Staging ...
+2026-05-15 05:27:38,677 [INFO]   [v1] Staging → Production ...
+2026-05-15 05:27:39,198 [INFO]   [v2] None → Staging ...
+2026-05-15 05:27:39,741 [INFO]   ✓ alias 'champion'   → v1 (Production)
+2026-05-15 05:27:39,741 [INFO]   ✓ alias 'challenger' → v2 (Staging)
+2026-05-15 05:27:39,754 [INFO]   Status akhir:
+2026-05-15 05:27:39,760 [INFO]     v2 → Staging
+2026-05-15 05:27:39,760 [INFO]     v1 → Production
+2026-05-15 05:27:39,760 [INFO] 
+============================================================
+2026-05-15 05:27:39,760 [INFO] LANGKAH 4: Sinkronisasi Metadata DVC
+2026-05-15 05:27:39,760 [INFO] ============================================================
+2026-05-15 05:27:39,773 [INFO]   ✓ Metadata disimpan: models/model_registry_metadata.json
+2026-05-15 05:27:39,774 [INFO]   ✓ DVC tracking file: models/champion_model_v1.dvc
+2026-05-15 05:27:39,775 [INFO]   ✓ dvc.yaml dibuat
+2026-05-15 05:27:39,776 [INFO]   ✓ .gitignore models/ dibuat
+2026-05-15 05:27:39,776 [INFO]   Data Lineage: data/processed/features.parquet → gempawas-aftershock-classifier v1 (Production)
+2026-05-15 05:27:39,776 [INFO] 
+============================================================
+2026-05-15 05:27:39,776 [INFO] LANGKAH 5: Verifikasi Inferensi Model Production
+2026-05-15 05:27:39,776 [INFO] ============================================================
+2026-05-15 05:27:39,794 [INFO]   Model URI : models:/gempawas-aftershock-classifier/Production
+2026-05-15 05:27:39,798 [INFO]   Version   : v1 | Run ID: 8ce77fa8ff5e...
+2026-05-15 05:27:39,842 [INFO]   Threshold : 0.45
+2026-05-15 05:27:39,846 [INFO] 
+  Memuat model via mlflow.pyfunc.load_model ...
+2026-05-15 05:27:40,061 [INFO]   ✓ Model berhasil dimuat! Tipe: <class 'mlflow.pyfunc.PyFuncModel'>
+2026-05-15 05:27:40,062 [INFO]   Menjalankan prediksi (511 sampel) ...
+2026-05-15 05:27:40,093 [INFO]   ✓ Prediksi selesai!
+2026-05-15 05:27:40,095 [INFO]   ✓ [1] PR-AUC   : 0.2525  (PRIMARY)
+2026-05-15 05:27:40,096 [INFO]   ✓ [2] F1-Score : 0.4086
+2026-05-15 05:27:40,096 [INFO]   ✓ [3] Recall   : 0.4750  (CRITICAL)
+2026-05-15 05:27:40,108 [INFO] 
+  Classification Report:
+                       precision    recall  f1-score   support
+
+Tidak Ada Susulan (0)       0.90      0.84      0.87       431
+      Ada Susulan (1)       0.36      0.47      0.41        80
+
+             accuracy                           0.78       511
+            macro avg       0.63      0.66      0.64       511
+         weighted avg       0.81      0.78      0.80       511
+
+2026-05-15 05:27:40,116 [INFO]   Contoh prediksi 5 sampel:
+2026-05-15 05:27:40,117 [INFO]   No     Aktual                 Prediksi              
+2026-05-15 05:27:40,119 [INFO]   ----------------------------------------------------
+2026-05-15 05:27:40,123 [INFO]   1      Tidak Ada Susulan      Ada Susulan            ✗
+2026-05-15 05:27:40,123 [INFO]   2      Tidak Ada Susulan      Ada Susulan            ✗
+2026-05-15 05:27:40,123 [INFO]   3      Tidak Ada Susulan      Ada Susulan            ✗
+2026-05-15 05:27:40,124 [INFO]   4      Tidak Ada Susulan      Tidak Ada Susulan      ✓
+2026-05-15 05:27:40,124 [INFO]   5      Tidak Ada Susulan      Tidak Ada Susulan      ✓
+2026-05-15 05:27:40,126 [INFO] 
+  Simulasi single-instance inference:
+2026-05-15 05:27:40,127 [INFO]   mainshock_mag=5.2 | depth=10.0 | jam_sejak=1.0
+2026-05-15 05:27:40,127 [INFO]   → Prediksi: 🔴 TINGGI — Ada Susulan
+2026-05-15 05:27:40,128 [INFO] 
+  ✓ Verifikasi BERHASIL — model Production siap inferensi!
+2026-05-15 05:27:40,167 [INFO] 
+=================================================================
+2026-05-15 05:27:40,171 [INFO] RINGKASAN LK-07 — Model Registry, Versioning, Inferensi
+2026-05-15 05:27:40,172 [INFO] =================================================================
+2026-05-15 05:27:40,173 [INFO] 
+📦 Model Registry: 'gempawas-aftershock-classifier'
+2026-05-15 05:27:40,173 [INFO]    Metrik utama: pr_auc (imbalanced-aware)
+2026-05-15 05:27:40,174 [INFO] 
+  Ver    Stage        PR-AUC     F1-Score   Recall     RunID[:8] 
+2026-05-15 05:27:40,174 [INFO]   ------------------------------------------------------------
+2026-05-15 05:27:40,183 [INFO]   v1     Production   0.4809     0.3981     0.5125     8ce77fa8  
+2026-05-15 05:27:40,196 [INFO]   v2     Staging      0.4809     0.4034     0.5875     d09e6ae4  
+2026-05-15 05:27:40,196 [INFO] 
+  Alias Modern (MLflow 3.x):
+2026-05-15 05:27:40,196 [INFO]     'challenger' → v2
+2026-05-15 05:27:40,197 [INFO]     'champion' → v1
+2026-05-15 05:27:40,197 [INFO] 
+🎯 Perbandingan v1 vs v2:
+2026-05-15 05:27:40,197 [INFO]   v1 (Production): pr_auc=0.4809 | f1=0.3981 | recall=0.5125
+2026-05-15 05:27:40,197 [INFO]   v2 (Staging)   : pr_auc=0.4809 | f1=0.4034 | recall=0.5875
+2026-05-15 05:27:40,197 [INFO] 
+✅ Status Checklist LK-07:
+2026-05-15 05:27:40,198 [INFO]   [✓] 1. Registrasi model v1 ke Model Registry
+2026-05-15 05:27:40,198 [INFO]   [✓] 2. Versioning — model v2 terdaftar
+2026-05-15 05:27:40,198 [INFO]   [✓] 3. Transisi: None→Staging→Production (v1) & None→Staging (v2)
+2026-05-15 05:27:40,198 [INFO]   [✓] 4. DVC metadata tersinkronisasi
+2026-05-15 05:27:40,198 [INFO]   [✓] 5. Verifikasi inferensi Production berhasil
+2026-05-15 05:27:40,198 [INFO] 
+🚀 Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
+2026-05-15 05:27:40,199 [INFO]    Navigasi ke: http://localhost:5000/#/models

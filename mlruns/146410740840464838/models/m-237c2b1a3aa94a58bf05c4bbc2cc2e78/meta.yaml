@@ -1,0 +1,10 @@
+artifact_location: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/models/m-237c2b1a3aa94a58bf05c4bbc2cc2e78/artifacts
+creation_timestamp: 1778799155941
+experiment_id: '146410740840464838'
+last_updated_timestamp: 1778799161260
+model_id: m-237c2b1a3aa94a58bf05c4bbc2cc2e78
+model_type: null
+name: model
+source_run_id: 22a22c4bee8847c3938ca7235a1f5c90
+status: 2
+status_message: null

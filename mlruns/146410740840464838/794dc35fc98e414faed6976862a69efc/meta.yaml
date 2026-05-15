@@ -1,8 +1,9 @@
 artifact_uri: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/794dc35fc98e414faed6976862a69efc/artifacts
+deleted_time: 1778822649491
 end_time: 1778780193433
 entry_point_name: ''
 experiment_id: '146410740840464838'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 794dc35fc98e414faed6976862a69efc
 run_name: run1_shallow_n50_d3_lr0.1
 source_name: ''

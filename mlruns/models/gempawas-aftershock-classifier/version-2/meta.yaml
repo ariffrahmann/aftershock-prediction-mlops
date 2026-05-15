@@ -1,0 +1,16 @@
+creation_timestamp: 1778822858136
+current_stage: Staging
+deployment_job_state: null
+description: null
+last_updated_timestamp: 1778822859204
+model_id: m-486f30c8f32d46a9bad0eee5dba934e4
+name: gempawas-aftershock-classifier
+run_id: d09e6ae42f2442e8a46ea3413155b28e
+run_link: null
+source: models:/m-486f30c8f32d46a9bad0eee5dba934e4
+status: READY
+status_message: null
+storage_location: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/models/m-486f30c8f32d46a9bad0eee5dba934e4/artifacts
+user_id: null
+version: 2
+workspace: default

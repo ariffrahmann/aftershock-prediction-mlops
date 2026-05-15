@@ -1,0 +1,22 @@
+artifact_path: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/models/m-bdf28a7d4a7941859c2e9c34de20d24e/artifacts
+flavors:
+  python_function:
+    data: model.ubj
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.12.1
+  xgboost:
+    code: null
+    data: model.ubj
+    model_class: xgboost.sklearn.XGBClassifier
+    model_format: ubj
+    xgb_version: 3.2.0
+mlflow_version: 3.12.0
+model_id: m-bdf28a7d4a7941859c2e9c34de20d24e
+model_size_bytes: 57607
+model_uuid: m-bdf28a7d4a7941859c2e9c34de20d24e
+prompts: null
+run_id: 490b4f6ea54e435e879473a8e93f0e38
+utc_time_created: '2026-05-14 22:52:25.617813'
