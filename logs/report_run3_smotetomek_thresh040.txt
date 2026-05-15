@@ -1,0 +1,18 @@
+Run: run3_smotetomek_thresh040
+Threshold: 0.4
+Resampling: SMOTETomek
+==================================================
+
+                       precision    recall  f1-score   support
+
+Tidak Ada Susulan (0)       0.91      0.75      0.82       431
+      Ada Susulan (1)       0.31      0.59      0.40        80
+
+             accuracy                           0.73       511
+            macro avg       0.61      0.67      0.61       511
+         weighted avg       0.81      0.73      0.76       511
+
+
+pr_auc (primary): 0.4809
+f1_score        : 0.4034
+recall (safety) : 0.5875

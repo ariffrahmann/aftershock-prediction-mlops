@@ -1,0 +1,18 @@
+Run: run2_smote_tuned_n200_d4
+Threshold: 0.45
+Resampling: SMOTETomek
+==================================================
+
+                       precision    recall  f1-score   support
+
+Tidak Ada Susulan (0)       0.90      0.80      0.85       431
+      Ada Susulan (1)       0.33      0.51      0.40        80
+
+             accuracy                           0.76       511
+            macro avg       0.61      0.66      0.62       511
+         weighted avg       0.81      0.76      0.78       511
+
+
+pr_auc (primary): 0.4809
+f1_score        : 0.3981
+recall (safety) : 0.5125

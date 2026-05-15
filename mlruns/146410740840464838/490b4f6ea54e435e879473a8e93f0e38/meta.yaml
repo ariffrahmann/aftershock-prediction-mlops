@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/490b4f6ea54e435e879473a8e93f0e38/artifacts
+deleted_time: 1778822649488
+end_time: 1778799155653
+entry_point_name: ''
+experiment_id: '146410740840464838'
+lifecycle_stage: deleted
+run_id: 490b4f6ea54e435e879473a8e93f0e38
+run_name: lk07_v1_best_model_registration
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778799144870
+status: 3
+tags: []
+user_id: codespace

@@ -1,0 +1,18 @@
+# DVC tracking file — gempawas-aftershock-classifier v1 (Production)
+# Digenerate oleh: src/model_registry.py (LK-07)
+
+outs:
+- md5: 8ce77fa8ff5e415caf239fee53002d3a
+  path: models:/m-a361b3897689466a89e496dcb880424c
+  desc: 'gempawas-aftershock-classifier v1 Production'
+
+meta:
+  mlflow_model_name: gempawas-aftershock-classifier
+  mlflow_version: '1'
+  mlflow_run_id: 8ce77fa8ff5e415caf239fee53002d3a
+  mlflow_stage: Production
+  primary_metric: pr_auc
+  pr_auc: 0.48088992185457213
+  f1_score: 0.39805825242718446
+  recall: 0.5125
+  registered_at: '2026-05-15T05:27:39.773730'

@@ -1,0 +1,18 @@
+Run: run1_smote_light_n100_d3
+Threshold: 0.45
+Resampling: SMOTETomek
+==================================================
+
+                       precision    recall  f1-score   support
+
+Tidak Ada Susulan (0)       0.89      0.77      0.83       431
+      Ada Susulan (1)       0.28      0.49      0.36        80
+
+             accuracy                           0.73       511
+            macro avg       0.59      0.63      0.59       511
+         weighted avg       0.80      0.73      0.75       511
+
+
+pr_auc (primary): 0.4440
+f1_score        : 0.3594
+recall (safety) : 0.4875

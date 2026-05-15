@@ -1,0 +1,14 @@
+artifact_uri: file:///workspaces/aftershock-prediction-mlops/mlruns/146410740840464838/d09e6ae42f2442e8a46ea3413155b28e/artifacts
+end_time: 1778822858152
+entry_point_name: ''
+experiment_id: '146410740840464838'
+lifecycle_stage: active
+run_id: d09e6ae42f2442e8a46ea3413155b28e
+run_name: lk07_v2_recall_boost
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1778822853706
+status: 3
+tags: []
+user_id: codespace

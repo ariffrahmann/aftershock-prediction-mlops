@@ -1,0 +1,8 @@
+Confusion Matrix (run: run3_smotetomek_thresh040)
+
+               Predicted
+                No   Yes
+Actual No      325   106
+       Yes      33    47
+
+→ Missed aftershock (FN): 33  ← harus sekecil mungkin!
