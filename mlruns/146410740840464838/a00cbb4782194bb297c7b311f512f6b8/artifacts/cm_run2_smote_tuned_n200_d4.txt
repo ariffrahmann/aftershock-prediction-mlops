@@ -1,8 +1,0 @@
-Confusion Matrix (run: run2_smote_tuned_n200_d4)
-
-               Predicted
-                No   Yes
-Actual No      346    85
-       Yes      39    41
-
-→ Missed aftershock (FN): 39  ← harus sekecil mungkin!

@@ -1,1 +1,0 @@
-v2: n_estimators 50→75, max_depth 3→4, lr 0.1→0.08
