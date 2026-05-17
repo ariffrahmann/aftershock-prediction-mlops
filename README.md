@@ -106,7 +106,7 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-### 4. Jalankan Ingestion Pertama Kali (Backfill 2 Tahun)
+### 4. Jalankan Ingestion Pertama Kali
 
 ```bash
 # Backfill data historis 2 tahun dari USGS
