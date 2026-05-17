@@ -1,11 +1,11 @@
 """
-GempaWas — LK-04: Data Ingestion Script
+Data Ingestion Script
 ========================================
 Skrip pengumpul data otomatis dari dua sumber data dinamis:
   1. USGS Earthquake API  (sumber utama, coverage global)
   2. BMKG Open API        (sumber pelengkap, lokal Indonesia)
 
-Sesuai LK-03, kedua sumber ini dipilih karena:
+kedua sumber ini dipilih karena:
   - Near real-time (data baru tersedia 5–15 menit setelah kejadian)
   - Tidak memerlukan autentikasi
   - Lisensi publik/open data
@@ -30,9 +30,7 @@ from pathlib import Path
 import pandas as pd
 import requests
 
-# ---------------------------------------------------------------------------
 # Setup logging
-# ---------------------------------------------------------------------------
 LOG_DIR = Path("logs")
 LOG_DIR.mkdir(exist_ok=True)
 
@@ -46,10 +44,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
 # Konstanta
-# ---------------------------------------------------------------------------
-# Bounding box wilayah Indonesia (LK-03: sesuai params.yaml)
+# Bounding box wilayah Indonesia (sesuai params.yaml)
 INDONESIA_BBOX = {
     "min_lat": -11.0,
     "max_lat": 6.0,
@@ -65,9 +61,7 @@ RAW_DATA_DIR = Path("data/raw")
 REQUEST_TIMEOUT = 30  # detik
 
 
-# ---------------------------------------------------------------------------
 # Fungsi: Fetch dari USGS
-# ---------------------------------------------------------------------------
 def fetch_usgs(hours_back: int = 2) -> pd.DataFrame:
     """
     Mengambil data gempa dari USGS Earthquake Catalog API menggunakan
@@ -134,9 +128,7 @@ def fetch_usgs(hours_back: int = 2) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-# ---------------------------------------------------------------------------
 # Fungsi: Fetch dari BMKG
-# ---------------------------------------------------------------------------
 def fetch_bmkg() -> pd.DataFrame:
     """
     Mengambil data gempa dari BMKG Open API menggunakan library `requests`.
@@ -219,9 +211,7 @@ def fetch_bmkg() -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
-# ---------------------------------------------------------------------------
 # Fungsi: Simpan ke CSV bertimestamp (non-destruktif)
-# ---------------------------------------------------------------------------
 def save_raw_csv(df: pd.DataFrame, dry_run: bool = False) -> Path:
     """
     Menyimpan DataFrame ke file CSV dengan nama bertimestamp.
@@ -276,7 +266,7 @@ def update_ingestion_manifest(output_path: Path, row_count: int):
 # Main
 def main():
     parser = argparse.ArgumentParser(
-        description="GempaWas — Data Ingestion Script (LK-04)"
+        description="GempaWas — Data Ingestion Script"
     )
     parser.add_argument(
         "--hours",

@@ -1,13 +1,9 @@
 """
-GempaWas — LK-06: Feature Engineering untuk Task Asli LK-01
-===============================================================
+Feature Engineering
 
-Membangun dataset training untuk binary classification SESUAI LK-01:
+Membangun dataset training untuk binary classification:
 
     Target: label_susulan_besar_24jam
-    Pertanyaan: "Setelah gempa M >= 5.0 di Indonesia, apakah akan
-                 ada susulan M >= 4.0 dalam 24 jam ke depan
-                 (radius 100 km)?"
 
 Pipeline:
   1. Load semua processed events (dari preprocess.py --all)
@@ -17,7 +13,6 @@ Pipeline:
      24, 48, 72 jam setelah mainshock
   4. Untuk tiap snapshot, hitung:
      - Fitur rolling: count_susulan_Xjam, max_mag_susulan
-     - Fitur fisika: omori_rate_est
      - Fitur statis: mainshock_magnitude, depth, zona_sesar
   5. Label: 1 jika ada susulan M >= 4.0 dalam jendela
      [snapshot_time, snapshot_time + 24h], radius 100 km
@@ -53,9 +48,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Konstanta domain (sesuai LK-01)
-# ---------------------------------------------------------------------------
+# Konstanta domain
 MAINSHOCK_THRESHOLD = 5.0       # M >= 5.0 dianggap mainshock
 AFTERSHOCK_THRESHOLD = 4.0      # M >= 4.0 dianggap susulan signifikan
 SPATIAL_RADIUS_KM = 100         # radius pencarian susulan dari mainshock
@@ -72,9 +65,7 @@ PROCESSED_DIR = Path("data/processed")
 DEFAULT_OUTPUT = PROCESSED_DIR / "features.parquet"
 
 
-# ---------------------------------------------------------------------------
 # Helpers
-# ---------------------------------------------------------------------------
 def haversine_km(lat1, lon1, lat2, lon2):
     """Jarak haversine dalam km."""
     R = 6371.0
@@ -95,7 +86,7 @@ def classify_zone(latitude: float, longitude: float) -> int:
         return 3  # Sesar Palu-Koro
     if -8 < latitude < 2 and 124 < longitude < 135:
         return 1  # Subduksi Maluku-Banda
-    return 4  # Lainnya / Papua
+    return 4  # Papua
 
 
 def omori_rate(t_hours: float) -> float:
@@ -104,9 +95,7 @@ def omori_rate(t_hours: float) -> float:
     return OMORI_K / ((t_days + OMORI_C) ** OMORI_P)
 
 
-# ---------------------------------------------------------------------------
 # Step 1: Load all processed events
-# ---------------------------------------------------------------------------
 def load_all_processed_events(processed_dir: Path = PROCESSED_DIR) -> pd.DataFrame:
     """Gabungkan semua processed CSV/Parquet, dedup, return clean DataFrame."""
     csv_files = sorted(processed_dir.glob("gempa_*_processed.csv"))
@@ -136,9 +125,7 @@ def load_all_processed_events(processed_dir: Path = PROCESSED_DIR) -> pd.DataFra
     return events
 
 
-# ---------------------------------------------------------------------------
 # Step 2: Identifikasi mainshocks
-# ---------------------------------------------------------------------------
 def find_mainshocks(events: pd.DataFrame) -> pd.DataFrame:
     """
     Mainshock = M >= 5.0 yang tidak didahului M >= 5.0 dalam
@@ -171,9 +158,7 @@ def find_mainshocks(events: pd.DataFrame) -> pd.DataFrame:
     return mainshocks
 
 
-# ---------------------------------------------------------------------------
 # Step 3: Build training rows per (mainshock, snapshot_time)
-# ---------------------------------------------------------------------------
 def build_training_row(mainshock: pd.Series, events: pd.DataFrame,
                         snapshot_hours: float) -> dict:
     """Bangun 1 row training data untuk kombinasi (mainshock, snapshot_time)."""
@@ -259,7 +244,7 @@ def build_dataset(events: pd.DataFrame) -> pd.DataFrame:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Build training features for LK-01 binary classification",
+        description="Build training features binary classification",
     )
     parser.add_argument(
         "--processed-dir", type=Path, default=PROCESSED_DIR,

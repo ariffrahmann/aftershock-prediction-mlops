@@ -54,7 +54,7 @@ INDONESIA_BBOX = {
 MAGNITUDE_MIN = 0.0
 MAGNITUDE_MAX = 10.0
 DEPTH_MIN_KM = 0.0
-DEPTH_MAX_KM = 700.0      # gempa dalam maksimum ~700 km
+DEPTH_MAX_KM = 700.0 
 
 # Nilai default untuk imputation
 DEFAULT_DEPTH_KM = 10.0   # shallow earthquake default (USGS convention)
@@ -254,7 +254,7 @@ def add_derived_features(df: pd.DataFrame) -> pd.DataFrame:
         right=True,
     ).astype(str)
 
-    # Kategori magnitude (skala Richter informal)
+    # Kategori magnitude
     df["magnitude_category"] = pd.cut(
         df["magnitude"],
         bins=[0, 2.0, 3.0, 4.0, 5.0, 6.0, 10.0],
