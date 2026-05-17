@@ -214,14 +214,6 @@ def deduplicate(df: pd.DataFrame) -> pd.DataFrame:
 
 # Step 7: Tambah fitur turunan dasar
 def add_derived_features(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Menambah kolom turunan yang dibutuhkan oleh src/features.py:
-    - year, month, hour     → dari time_utc
-    - depth_category        → shallow/intermediate/deep
-    - magnitude_category    → micro/minor/moderate/strong/major
-    - zona_sesar            → klasifikasi zona berdasarkan koordinat
-    - is_felt               → apakah gempa dirasakan (felt_intensity > 0)
-    """
     logger.info("Menambah fitur turunan dasar...")
 
     # Komponen waktu
@@ -270,14 +262,6 @@ def add_derived_features(df: pd.DataFrame) -> pd.DataFrame:
 
 # Step 8: Simpan hasil
 def save_processed(df: pd.DataFrame, input_path: Path) -> dict:
-    """
-    Menyimpan data yang sudah dibersihkan ke:
-    - data/processed/<nama_file>_processed.csv    (untuk inspeksi manual)
-    - data/processed/<nama_file>_processed.parquet (untuk pipeline ML)
-
-    Returns:
-        Dict berisi path output.
-    """
     PROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     stem = input_path.stem  # e.g. "gempa_20250512_100000"
@@ -301,16 +285,6 @@ def save_processed(df: pd.DataFrame, input_path: Path) -> dict:
 
 # Fungsi utama: pipeline preprocessing satu file
 def preprocess_file(input_path: Path) -> pd.DataFrame:
-    """
-    Menjalankan seluruh pipeline preprocessing untuk satu file CSV mentah.
-
-    Pipeline:
-      load → validate_schema → normalize_dtypes → clean_missing
-           → filter_anomalies → deduplicate → add_derived_features → save
-
-    Returns:
-        DataFrame yang sudah bersih, siap untuk feature engineering.
-    """
     logger.info("-" * 50)
     logger.info("Memproses file: %s", input_path.name)
 
