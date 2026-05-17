@@ -3,15 +3,15 @@
     "model_name": "gempawas-aftershock-classifier",
     "version": 1,
     "stage": "Staging",
-    "promoted_at": "2026-05-17T11:45:14.240140+00:00",
-    "mlflow_run_id": "f48ab1cb0bee49a4800a48675abe8e9d",
-    "git_commit": "db04fd64974b",
+    "promoted_at": "2026-05-17T14:52:25.650635+00:00",
+    "mlflow_run_id": "a3ad8beb4c634c3ebbf0d8eb2ae06032",
+    "git_commit": "bc57dae01b4f",
     "git_branch": "feat/lk09",
     "metrics": {
       "pr_auc": 0.4809
     },
     "promoted_by": "ariffrahmann",
-    "workflow_run_id": "25989797146"
+    "workflow_run_id": "25993983710"
   },
   "history": [
     {
@@ -41,6 +41,20 @@
       },
       "promoted_by": "ariffrahmann",
       "workflow_run_id": "25989797146"
+    },
+    {
+      "model_name": "gempawas-aftershock-classifier",
+      "version": 1,
+      "stage": "Staging",
+      "promoted_at": "2026-05-17T14:52:25.650635+00:00",
+      "mlflow_run_id": "a3ad8beb4c634c3ebbf0d8eb2ae06032",
+      "git_commit": "bc57dae01b4f",
+      "git_branch": "feat/lk09",
+      "metrics": {
+        "pr_auc": 0.4809
+      },
+      "promoted_by": "ariffrahmann",
+      "workflow_run_id": "25993983710"
     }
   ]
 }
