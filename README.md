@@ -10,8 +10,8 @@ gempa utama (*mainshock*) bermagnitudo ≥ M5.0.
 
 Sumber data diperoleh dari dua API:
 
-1. **USGS Earthquake API** (sumber utama, global): `https://earthquake.usgs.gov/fdsnws/event/1/query`
-2. **BMKG Open Data API** (sumber pelengkap, Indonesia): `https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.json`
+1. **USGS Earthquake API** : `https://earthquake.usgs.gov/fdsnws/event/1/query`
+2. **BMKG Open Data API** : `https://data.bmkg.go.id/DataMKG/TEWS/gempaterkini.json`
 
 ---
 
