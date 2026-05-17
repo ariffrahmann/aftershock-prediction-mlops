@@ -1,20 +1,3 @@
-"""
-Tugas preprocessing:
-  1. Memuat file CSV mentah dari data/raw/
-  2. Membersihkan missing values (imputation + drop)
-  3. Validasi range koordinat & magnitude (filter anomali)
-  4. Normalisasi format kolom (tipe data, satuan)
-  5. Menambah fitur turunan dasar (waktu, zona)
-  6. Menyimpan hasil ke data/processed/ dalam format CSV & Parquet
-
-Output siap digunakan oleh src/features.py untuk ekstraksi fitur.
-
-Cara menjalankan:
-  python src/data/preprocess.py                         # proses file terbaru
-  python src/data/preprocess.py --input data/raw/gempa_20250512_100000.csv
-  python src/data/preprocess.py --all                   # proses semua file raw
-"""
-
 import argparse
 import logging
 import sys

@@ -1,25 +1,4 @@
-"""
-Data Ingestion Script
-========================================
-Skrip pengumpul data otomatis dari dua sumber data dinamis:
-  1. USGS Earthquake API  (sumber utama, coverage global)
-  2. BMKG Open API        (sumber pelengkap, lokal Indonesia)
 
-kedua sumber ini dipilih karena:
-  - Near real-time (data baru tersedia 5–15 menit setelah kejadian)
-  - Tidak memerlukan autentikasi
-  - Lisensi publik/open data
-
-Cara menjalankan:
-  python src/data/ingest_data.py                  # ambil 2 jam terakhir
-  python src/data/ingest_data.py --hours 24        # ambil 24 jam terakhir
-  python src/data/ingest_data.py --hours 48 --dry-run  # simulasi tanpa simpan
-
-Simulasi Periodik (Continual Learning):
-  Setiap kali skrip dijalankan, file baru disimpan dengan nama:
-    data/raw/gempa_YYYYMMDD_HHMMSS.csv
-  sehingga data lama TIDAK tertimpa (non-destruktif).
-"""
 
 import argparse
 import logging
@@ -159,17 +138,14 @@ def fetch_bmkg() -> pd.DataFrame:
             continue
 
         gempa_list = data.get("Infogempa", {}).get("gempa", [])
-        # Kadang API mengembalikan dict tunggal, bukan list
         if isinstance(gempa_list, dict):
             gempa_list = [gempa_list]
 
         for g in gempa_list:
             try:
-                # BMKG menyimpan koordinat di field Lintang dan Bujur
                 # Format Lintang: "-8.43 LS" atau "2.14 LU"
                 # Format Bujur : "115.23 BT"
                 def parse_coord(raw: str) -> float:
-                    """Konversi '8.43 LS' → -8.43, '2.14 LU' → +2.14, dll."""
                     raw = str(raw).strip()
                     parts = raw.split()
                     if not parts:
@@ -213,18 +189,6 @@ def fetch_bmkg() -> pd.DataFrame:
 
 # Fungsi: Simpan ke CSV bertimestamp (non-destruktif)
 def save_raw_csv(df: pd.DataFrame, dry_run: bool = False) -> Path:
-    """
-    Menyimpan DataFrame ke file CSV dengan nama bertimestamp.
-    Setiap run menghasilkan file BARU sehingga data lama tidak tertimpa.
-    Format nama: data/raw/gempa_YYYYMMDD_HHMMSS.csv
-
-    Args:
-        df: DataFrame yang akan disimpan.
-        dry_run: Jika True, hanya tampilkan preview tanpa simpan file.
-
-    Returns:
-        Path file yang disimpan (atau Path kosong jika dry_run).
-    """
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_path = RAW_DATA_DIR / f"gempa_{timestamp}.csv"
 
@@ -241,10 +205,6 @@ def save_raw_csv(df: pd.DataFrame, dry_run: bool = False) -> Path:
 
 # Fungsi: Simpan manifest run
 def update_ingestion_manifest(output_path: Path, row_count: int):
-    """
-    Mencatat setiap run ingestion ke file manifest CSV untuk
-    keperluan audit dan simulasi Continual Learning.
-    """
     manifest_path = RAW_DATA_DIR / "ingestion_manifest.csv"
     entry = pd.DataFrame([{
         "run_timestamp": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
@@ -266,7 +226,7 @@ def update_ingestion_manifest(output_path: Path, row_count: int):
 # Main
 def main():
     parser = argparse.ArgumentParser(
-        description="GempaWas — Data Ingestion Script"
+        description="Data Ingestion Script"
     )
     parser.add_argument(
         "--hours",

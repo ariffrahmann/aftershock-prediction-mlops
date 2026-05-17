@@ -1,28 +1,3 @@
-"""
-Feature Engineering
-
-Membangun dataset training untuk binary classification:
-
-    Target: label_susulan_besar_24jam
-
-Pipeline:
-  1. Load semua processed events (dari preprocess.py --all)
-  2. Identifikasi mainshocks: M >= 5.0 yang tidak didahului M >= 5.0
-     dalam radius 100 km / 7 hari sebelumnya
-  3. Untuk tiap mainshock, generate snapshot pada t = 1, 3, 6, 12,
-     24, 48, 72 jam setelah mainshock
-  4. Untuk tiap snapshot, hitung:
-     - Fitur rolling: count_susulan_Xjam, max_mag_susulan
-     - Fitur statis: mainshock_magnitude, depth, zona_sesar
-  5. Label: 1 jika ada susulan M >= 4.0 dalam jendela
-     [snapshot_time, snapshot_time + 24h], radius 100 km
-  6. Output: data/processed/features.parquet (training-ready)
-
-Cara menjalankan:
-  python src/build_features.py
-  python src/build_features.py --processed-dir data/processed
-"""
-
 from __future__ import annotations
 
 import argparse
