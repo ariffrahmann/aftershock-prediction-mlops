@@ -1,4 +1,4 @@
-# DVC Pipeline — GempaWas Model Registry (LK-07)
+# DVC Pipeline —  Model Registry 
 
 stages:
   train_and_register:

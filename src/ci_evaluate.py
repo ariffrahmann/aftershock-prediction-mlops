@@ -110,11 +110,6 @@ def write_report(passed: bool, metrics: dict, thresholds: dict,
                   details: list, run_id: str, version: str | None):
     """
     Tulis laporan evaluasi sebagai Markdown.
-
-    Kenapa Markdown?
-    - GitHub Actions dapat menampilkan Markdown di Job Summary
-    - Menjadi dokumentasi otomatis setiap kali pipeline berjalan
-    - Tim bisa melihat riwayat evaluasi model di GitHub
     """
     REPORT_PATH.parent.mkdir(exist_ok=True)
     status_badge = "✅ LOLOS — Model Registered to Staging" if passed else "❌ GAGAL — Model NOT Registered"

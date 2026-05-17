@@ -156,7 +156,7 @@ def main():
     #  Transition ke Staging
     transition_to_stage(client, args.model_name, version, args.stage)
 
-    # Tulis metadata untuk lineage (LK-07 #4)
+    # Tulis metadata untuk lineage
     write_metadata(args.model_name, version, args.run_id, args.stage, args.pr_auc)
 
     print("\n" + "=" * 60)

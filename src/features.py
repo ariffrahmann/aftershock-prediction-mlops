@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import numpy as np
 
-# Konstanta Omori's Law (sama dengan build_features.py)
 OMORI_K = 10.0
 OMORI_C = 0.1
 OMORI_P = 1.0

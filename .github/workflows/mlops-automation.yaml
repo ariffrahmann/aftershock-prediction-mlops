@@ -7,7 +7,7 @@ on:
     branches: [main, master]
   workflow_dispatch:  # bisa trigger manual dari GitHub UI
 
-# Threshold dari LK-01 
+# Threshold
 env:
   PYTHON_VERSION: "3.12"
   PR_AUC_THRESHOLD: "0.45"
@@ -75,8 +75,7 @@ jobs:
           echo "✓ Stale mlruns cleaned"
 
       - name: 📥 Pull data from DVC
-        # Kalau remote DVC sudah di-setup (GCS/local), pull data
-        # Fallback: pakai data yang sudah commited (kalau ada di repo)
+        # Kalau remote DVC sudah di-setup (local), pull data
         run: |
           if [ -d ".dvc" ]; then
             dvc pull --quiet || echo "⚠ DVC pull gagal, lanjut dengan data lokal"

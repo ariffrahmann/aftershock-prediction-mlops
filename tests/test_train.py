@@ -23,7 +23,6 @@ TARGET = "label_susulan_besar_24jam"
 def df():
     """
     Fixture scope='module' artinya data hanya dibaca sekali per sesi test.
-    Ini menghemat waktu — tidak perlu baca parquet berulang kali.
     """
     if not FEATURES_PATH.exists():
         pytest.skip("features.parquet tidak tersedia — skip data-dependent tests")
@@ -42,9 +41,7 @@ def train_test_split(df):
     return X_train, X_test, y_train, y_test
 
 
-# ---------------------------------------------------------------------------
 # TEST 1: Integritas data
-# ---------------------------------------------------------------------------
 def test_load_features(df):
     """
     Memastikan features.parquet bisa dibaca dan punya struktur yang benar.
@@ -67,9 +64,7 @@ def test_feature_columns_count(df):
     assert len(FEATURE_COLUMNS) == 10, "Harus ada tepat 10 fitur"
 
 
-# ---------------------------------------------------------------------------
 # TEST 2: Train-test split
-# ---------------------------------------------------------------------------
 def test_prepare_train_test(train_test_split):
     """
     Memastikan pembagian data 75/25 menghasilkan ukuran yang wajar.
@@ -97,14 +92,10 @@ def test_split_is_time_based(df):
         "DATA LEAKAGE: ada data train yang lebih baru dari data test!"
 
 
-# ---------------------------------------------------------------------------
 # TEST 3: Metrik evaluasi
-# ---------------------------------------------------------------------------
 def test_compute_3_metrics(train_test_split):
     """
     Memastikan 3 metrik inti dapat dihitung dan nilainya dalam range valid [0, 1].
-
-    Kenapa test metrik penting?
     - Kalau ada perubahan kode di compute_3_metrics(), test ini mendeteksi
       kalau metrik tiba-tiba jadi NaN, negatif, atau > 1
     - Menjamin konsistensi definisi metrik antar versi kode
@@ -127,18 +118,11 @@ def test_compute_3_metrics(train_test_split):
     assert 0.0 <= recall  <= 1.0, f"recall tidak valid: {recall}"
 
 
-# ---------------------------------------------------------------------------
 # TEST 4: SMOTETomek
-# ---------------------------------------------------------------------------
 def test_smotetomek_balances(train_test_split):
     """
     Memastikan SMOTETomek menghasilkan distribusi kelas yang lebih seimbang
     dari distribusi asli (84:16).
-
-    Kenapa penting?
-    - Kalau SMOTETomek gagal (library berubah, dll.), training akan berjalan
-      dengan data asli yang imbalanced — model akan jauh lebih buruk
-    - Test ini mendeteksi masalah tersebut sebelum training penuh
     """
     X_train, _, y_train, _ = train_test_split
     original_ratio = (y_train == 1).sum() / len(y_train)
@@ -155,9 +139,7 @@ def test_smotetomek_balances(train_test_split):
         f"Distribusi setelah resampling tidak wajar: {resampled_ratio:.2f}"
 
 
-# ---------------------------------------------------------------------------
 # TEST 5: Model output
-# ---------------------------------------------------------------------------
 def test_model_predicts_proba(train_test_split):
     """
     Memastikan model XGBoost menghasilkan probabilitas valid.
