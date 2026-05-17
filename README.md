@@ -25,41 +25,26 @@ aftershock-prediction-mlops/
 │   ├── .gitignore
 │   └── config
 ├── .github/workflows/              <- GitHub Actions CI/CD
-│   ├── scheduled_ingestion.yml     <- Cron tiap jam untuk ingestion data
-│   ├── weekly_retrain.yml          <- Cron mingguan untuk retraining
 │   └── mlops-automation.yaml       <- "Code as a Trigger" pipeline (LK-08)
 ├── config/
 │   └── params.yaml                 <- Parameter terpusat
 ├── data/
 │   ├── raw/                        <- Raw JSON/CSV snapshot dari API (DVC tracked)
-│   ├── interim/                    <- Data setelah cleaning (events_clean.parquet)
-│   ├── processed/                  <- Features siap training (features.parquet)
-│   └── external/                   <- Data eksternal (lookup tables)
-├── docs/                           <- Dokumentasi & dokumen LK
-│   ├── LK01_inisiasi_proyek.pdf
-│   ├── lk03_etl_pipeline.md
-│   ├── lk04_ingestion_guide.md
-│   ├── lk05_dvc_guide.md
-│   └── figures/
-│       └── lk03_arsitektur_etl.png
+│   ├── interim/                    <- Features siap training (features.parquet)
+│   ├── processed/                  <- Data setelah cleaning (events_clean.parquet)
 ├── mlruns/                         <- MLflow tracking lokal (gitignored)
 ├── models/                         <- Model artifacts (DVC tracked)
 │   └── model_registry_metadata.json
-├── notebooks/                      <- Jupyter notebooks untuk EDA
-├── reports/                        <- Laporan dan visualisasi
-│   └── figures/
 ├── scripts/
-│   ├── validate_threshold.py       <- LK-08: cek metric vs threshold
-│   ├── auto_register.py            <- LK-08: register model ke Staging
-│   └── simulate_continual_learning.sh
+│   ├── validate_threshold.py       <- cek metric vs threshold
+│   ├── auto_register.py            <- register model ke Staging
 ├── src/                            <- Source code utama
 │   ├── data/
 │   │   ├── ingest_data.py          <- Ingestion USGS + BMKG dengan timestamp
 │   │   └── preprocess.py           <- Cleaning + dedup events
-│   ├── build_features.py           <- Feature engineering (Omori's Law)
+│   ├── build_features.py           <- Feature engineering
 │   ├── train.py                    <- Training XGBoost + MLflow logging
-│   ├── inference.py                <- FastAPI inference (untuk LK-10)
-│   ├── monitor.py                  <- Drift detection (PSI + Evidently AI)
+│   ├── inference.py                <- Streamlit inference
 │   └── model_registry.py           <- Helper untuk MLflow Registry
 ├── tests/                          <- Unit tests (pytest)
 │   ├── test_ingest_data.py
@@ -70,7 +55,6 @@ aftershock-prediction-mlops/
 ├── .editorconfig
 ├── .env.example
 ├── .gitignore
-├── Dockerfile.streamlit            <- Untuk LK-10
 ├── LICENSE                         <- MIT
 ├── Makefile
 ├── README.md
