@@ -93,7 +93,7 @@ pip install -r requirements-dev.txt
 
 Tahap ini menangani pengambilan dan pembersihan data seismik secara otomatis.
 
-* **Pengambilan Data:** `src/data/ingest_data.py` menarik event seismik dari **USGS API** dan **BMKG API** setiap jam melalui GitHub Actions cron job (`scheduled_ingestion.yml`). Setiap output disimpan dalam format CSV/JSON bertimestamp di `data/raw/`.
+* **Pengambilan Data:** `src/data/ingest_data.py` menarik event seismik dari **USGS API** dan **BMKG API**. Setiap output disimpan dalam format CSV/JSON bertimestamp di `data/raw/`.
 * **Pembersihan Data:** `src/data/preprocess.py` menjalankan serangkaian proses pembersihan: parsing datetime ke format UTC, validasi koordinat dalam bounding box wilayah Indonesia, imputasi nilai depth yang hilang, penghapusan outlier, dan deduplication event. Hasil bersih disimpan sebagai `data/processed/.parquet`.
 
 ### 2. Manajemen Versi Data (DVC)
@@ -133,7 +133,7 @@ Pipeline GitHub Actions di `.github/workflows/mlops-automation.yaml` dipicu seca
 
 * **Stage 1 — Automated Testing:** Menjalankan seluruh unit test menggunakan `pytest`
 * **Stage 2 — Automated Training:** Melatih ulang model menggunakan data terbaru dari DVC
-* **Stage 3 — Model Evaluation:** Memvalidasi metrik model terhadap threshold yang ditetapkan di LK-01 (PR-AUC ≥ 0.45, F1 ≥ 0.35, Recall ≥ 0.40) menggunakan `scripts/validate_threshold.py`
+* **Stage 3 — Model Evaluation:** Memvalidasi metrik model terhadap threshold (PR-AUC ≥ 0.45, F1 ≥ 0.35, Recall ≥ 0.40) menggunakan `scripts/validate_threshold.py`
 * **Stage 4 — Auto-Registry Update:** Mempromosikan model terbaik ke stage *Staging* secara otomatis jika lolos validasi, menggunakan `scripts/auto_register.py`
 
 ### 6. Orkestrasi Layanan Terintegrasi
