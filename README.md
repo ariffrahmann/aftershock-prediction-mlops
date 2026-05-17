@@ -103,22 +103,7 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-### 4. Jalankan Ingestion Pertama Kali
-
-```bash
-# Backfill data historis 2 tahun dari USGS
-python src/data/ingest_data.py --hours 17520
-
-# Preprocess semua raw files
-python src/data/preprocess.py
-
-# Build features (mainshock detection + label aftershock)
-python src/build_features.py
-```
-
----
-
-## Arsitektur & Status Proyek (Alur MLOps)
+## Arsitektur (Alur MLOps)
 
 ### 1. Data Ingestion & Preprocessing
 
