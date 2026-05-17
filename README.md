@@ -17,9 +17,6 @@ Sumber data diperoleh dari dua API:
 
 ## Struktur Direktori Proyek
 
-Proyek ini menggunakan struktur standar **Cookiecutter Data Science** untuk menjaga
-organisasi kode tetap rapi, terstandarisasi, dan mudah dikembangkan oleh tim.
-
 ```
 aftershock-prediction-mlops/
 ├── .devcontainer/                  <- Codespaces config (Python 3.11 + extensions)
@@ -123,15 +120,12 @@ python src/build_features.py
 
 ## Arsitektur & Status Proyek (Alur MLOps)
 
-Sistem GempaWas telah terintegrasi dari hulu ke hilir dengan rincian fungsionalitas
-sebagai berikut:
-
 ### 1. Data Ingestion & Preprocessing
 
 Tahap ini menangani pengambilan dan pembersihan data seismik secara otomatis.
 
-* **Pengambilan Data:** `src/data/ingest_data.py` menarik event seismik dari **USGS API** dan **BMKG API** setiap jam melalui GitHub Actions cron job (`scheduled_ingestion.yml`). Setiap output disimpan dalam format CSV/JSON bertimestamp di `data/raw/` secara *append-only* dan non-destruktif.
-* **Pembersihan Data:** `src/data/preprocess.py` menjalankan serangkaian proses pembersihan: parsing datetime ke format UTC, validasi koordinat dalam bounding box wilayah Indonesia, imputasi nilai depth yang hilang, penghapusan outlier, dan deduplication event. Hasil bersih disimpan sebagai `data/interim/events_clean.parquet`.
+* **Pengambilan Data:** `src/data/ingest_data.py` menarik event seismik dari **USGS API** dan **BMKG API** setiap jam melalui GitHub Actions cron job (`scheduled_ingestion.yml`). Setiap output disimpan dalam format CSV/JSON bertimestamp di `data/raw/`.
+* **Pembersihan Data:** `src/data/preprocess.py` menjalankan serangkaian proses pembersihan: parsing datetime ke format UTC, validasi koordinat dalam bounding box wilayah Indonesia, imputasi nilai depth yang hilang, penghapusan outlier, dan deduplication event. Hasil bersih disimpan sebagai `data/processed/.parquet`.
 
 ### 2. Manajemen Versi Data (DVC)
 
@@ -152,7 +146,6 @@ Pendekatan ini memastikan setiap versi dataset dapat direproduksi dan di-*rollba
 
 * **Identifikasi mainshock:** Event bermagnitudo ≥ M5.0 yang terisolasi (tidak ada event ≥ M5.0 lain dalam radius 100 km selama 7 hari sebelumnya)
 * **Snapshot temporal:** Untuk tiap mainshock, di-generate 7 snapshot pada t = 1, 3, 6, 12, 24, 48, dan 72 jam pasca-kejadian
-* **Fitur rolling & fisika:** Termasuk `count_susulan`, `max_mag`, estimasi laju peluruhan berbasis *Omori's Law* (`omori_rate_est`), dan zona sesar terdekat
 * **Labeling biner:** Label = 1 jika terdapat gempa susulan ≥ M4.0 dalam 24 jam ke depan dalam radius 100 km; label = 0 jika tidak ada
 
 ### 4. Pelatihan Model & Registrasi
