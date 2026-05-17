@@ -3,68 +3,30 @@
     "model_name": "gempawas-aftershock-classifier",
     "version": 1,
     "stage": "Staging",
-    "promoted_at": "2026-05-17T14:52:25.650635+00:00",
-    "mlflow_run_id": "a3ad8beb4c634c3ebbf0d8eb2ae06032",
-    "git_commit": "bc57dae01b4f",
+    "promoted_at": "2026-05-17T15:04:05.130734+00:00",
+    "mlflow_run_id": "b488963877784e5ea3d12c673d6e775e",
+    "git_commit": "43f096d9375e",
     "git_branch": "feat/lk09",
-    "promoted_at": "2026-05-15T10:58:03.074475+00:00",
-    "mlflow_run_id": "efef3b2755e64243bf8f26242da72e20",
-    "git_commit": "4e08579b616e",
-    "git_branch": "feat/lk08",
     "metrics": {
       "pr_auc": 0.4809
     },
     "promoted_by": "ariffrahmann",
-    "workflow_run_id": "25993983710"
-    "workflow_run_id": "25914010729"
+    "workflow_run_id": "25994244961"
   },
   "history": [
     {
       "model_name": "gempawas-aftershock-classifier",
       "version": 1,
       "stage": "Staging",
-      "promoted_at": "2026-05-15T12:48:41.046984+00:00",
-      "mlflow_run_id": "ed869898a1514010bb5e5f3f2fc5397d",
-      "git_commit": "309774c6dff1",
-      "git_branch": "feat/lk09",
-      "promoted_at": "2026-05-15T10:58:03.074475+00:00",
-      "mlflow_run_id": "efef3b2755e64243bf8f26242da72e20",
-      "git_commit": "4e08579b616e",
-      "git_branch": "feat/lk08",
-      "metrics": {
-        "pr_auc": 0.4809
-      },
-      "promoted_by": "ariffrahmann",
-      "workflow_run_id": "25918392866"
-    },
-    {
-      "model_name": "gempawas-aftershock-classifier",
-      "version": 1,
-      "stage": "Staging",
-      "promoted_at": "2026-05-17T11:45:14.240140+00:00",
-      "mlflow_run_id": "f48ab1cb0bee49a4800a48675abe8e9d",
-      "git_commit": "db04fd64974b",
+      "promoted_at": "2026-05-17T15:04:05.130734+00:00",
+      "mlflow_run_id": "b488963877784e5ea3d12c673d6e775e",
+      "git_commit": "43f096d9375e",
       "git_branch": "feat/lk09",
       "metrics": {
         "pr_auc": 0.4809
       },
       "promoted_by": "ariffrahmann",
-      "workflow_run_id": "25989797146"
-    },
-    {
-      "model_name": "gempawas-aftershock-classifier",
-      "version": 1,
-      "stage": "Staging",
-      "promoted_at": "2026-05-17T14:52:25.650635+00:00",
-      "mlflow_run_id": "a3ad8beb4c634c3ebbf0d8eb2ae06032",
-      "git_commit": "bc57dae01b4f",
-      "git_branch": "feat/lk09",
-      "metrics": {
-        "pr_auc": 0.4809
-      },
-      "promoted_by": "ariffrahmann",
-      "workflow_run_id": "25993983710"
-      "workflow_run_id": "25914010729"
+      "workflow_run_id": "25994244961"
     }
   ]
 }
