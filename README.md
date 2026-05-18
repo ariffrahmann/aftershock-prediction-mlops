@@ -87,7 +87,7 @@ pip install -r requirements.txt
 pip install -r requirements-dev.txt
 ```
 
-## Arsitektur (Alur MLOps)
+## Tahapan
 
 ### 1. Data Ingestion & Preprocessing
 
