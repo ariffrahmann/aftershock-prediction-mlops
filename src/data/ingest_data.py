@@ -107,13 +107,6 @@ def fetch_usgs(hours_back: int = 2) -> pd.DataFrame:
 
 # Fungsi: Fetch dari BMKG
 def fetch_bmkg() -> pd.DataFrame:
-    """
-    Mengambil data gempa dari BMKG Open API menggunakan library `requests`.
-    Menggabungkan endpoint gempaterkini dan gempadirasakan.
-
-    Returns:
-        DataFrame berisi event gempa dari BMKG, atau DataFrame kosong jika gagal.
-    """
     rows = []
 
     for url, label in [
