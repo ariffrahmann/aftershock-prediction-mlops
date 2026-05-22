@@ -1,0 +1,12 @@
+Feature Importance:
+
+  max_mag_susulan_24jam     0.2150
+  count_susulan_24jam       0.1563
+  mainshock_magnitude       0.1117
+  jam_sejak_mainshock       0.1097
+  zona_sesar                0.0895
+  mainshock_depth           0.0819
+  max_mag_susulan_6jam      0.0807
+  omori_rate_est            0.0696
+  count_susulan_6jam        0.0676
+  count_susulan_1jam        0.0180

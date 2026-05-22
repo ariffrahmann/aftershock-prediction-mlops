@@ -1,5 +1,4 @@
 services:
-  # SERVICE 1: Database Metadata (PostgreSQL)
   db:
     image: postgres:15
     container_name: gempawas_postgres
@@ -12,32 +11,59 @@ services:
     networks:
       - gempawas-network
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d mlflow_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-  # SERVICE 2: MLflow Tracking Server
   mlflow-server:
-    image: python:3.10-slim
+    image: python:3.12-slim
     container_name: gempawas_mlflow
-    command: bash -c "pip install mlflow==2.10.2 psycopg2-binary && mlflow server
-     --backend-store-uri postgresql://admin:password123@db:5432/mlflow_db 
-     --default-artifact-root /mlflow/artifacts 
-     --host 0.0.0.0 
-     --port 5000"
+    command: bash -c "pip install --quiet mlflow==3.12.0 psycopg2-binary && mlflow server --backend-store-uri postgresql://admin:password123@db:5432/mlflow_db --default-artifact-root /workspaces/aftershock-prediction-mlops/mlruns/artifacts --host 0.0.0.0 --port 5000"
     ports:
       - "5000:5000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
-      - mlflow-data:/mlflow/artifacts
+      - ./mlruns:/workspaces/aftershock-prediction-mlops/mlruns
     networks:
       - gempawas-network
     restart: unless-stopped
 
-# CUSTOM BRIDGE NETWORK
+  model-serving:
+    image: gempawas-model:latest
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow-server:5000
+    expose:
+      - "8080"
+    depends_on:
+      - mlflow-server
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+
+  nginx:
+    image: nginx:alpine
+    container_name: gempawas_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - model-serving
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
 networks:
   gempawas-network:
     driver: bridge
 
-# PERSISTENT VOLUMES
 volumes:
   pg-data:
-  mlflow-data:

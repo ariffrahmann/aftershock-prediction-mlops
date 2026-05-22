@@ -5,6 +5,7 @@ import logging
 import sys
 from pathlib import Path
 
+import os
 import mlflow
 import mlflow.xgboost
 import numpy as np
@@ -51,7 +52,7 @@ FEATURE_COLUMNS = [
     "zona_sesar",
 ]
 
-MLFLOW_TRACKING_URI    = "file:./mlruns"
+MLFLOW_TRACKING_URI = os.environ.get("MLFLOW_TRACKING_URI", "file:./mlruns")
 MLFLOW_EXPERIMENT_NAME = "gempawas-aftershock-prediction"
 DEFAULT_THRESHOLD      = 0.45
 

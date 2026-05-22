@@ -308,3 +308,121 @@
 2026-05-15 05:26:04,101 [INFO]     pr_auc=0.4809 | f1=0.3981 | recall=0.5125
 2026-05-15 05:26:04,101 [INFO] 
 ✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
+2026-05-22 09:46:25,900 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 09:46:25,902 [INFO] Resampling      : SMOTETomek
+2026-05-22 09:46:25,903 [INFO] Threshold       : 0.45
+2026-05-22 09:46:26,202 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 09:46:26,209 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 09:46:26,212 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 09:46:26,212 [INFO] 
+=================================================================
+2026-05-22 09:46:26,212 [INFO] RUN: manual_run
+2026-05-22 09:46:26,212 [INFO] =================================================================
+2026-05-22 09:46:26,213 [INFO] Menerapkan SMOTETomek...
+2026-05-22 09:46:26,213 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 09:46:26,273 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 09:46:37,084 [INFO] 
+--- Hasil Run: manual_run ---
+2026-05-22 09:46:37,084 [INFO]   [1] pr_auc    : 0.4809  ← PRIMARY
+2026-05-22 09:46:37,085 [INFO]   [2] f1_score  : 0.3981  ← BALANCE
+2026-05-22 09:46:37,085 [INFO]   [3] recall    : 0.5125  ← CRITICAL (safety)
+2026-05-22 09:46:37,085 [INFO]   Threshold     : 0.45
+2026-05-22 09:46:37,085 [INFO]   MLflow Run ID : 04370aa6acf2482f8b432235f8a15a4f
+2026-05-22 09:46:37,087 [INFO] 
+✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
+2026-05-22 09:48:39,039 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 09:48:39,039 [INFO] Resampling      : SMOTETomek
+2026-05-22 09:48:39,040 [INFO] Threshold       : 0.45
+2026-05-22 09:48:39,057 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 09:48:39,059 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 09:48:39,061 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 09:48:39,061 [INFO] 
+=================================================================
+2026-05-22 09:48:39,061 [INFO] RUN: manual_run
+2026-05-22 09:48:39,061 [INFO] =================================================================
+2026-05-22 09:48:39,061 [INFO] Menerapkan SMOTETomek...
+2026-05-22 09:48:39,061 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 09:48:39,080 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 09:48:45,318 [INFO] 
+--- Hasil Run: manual_run ---
+2026-05-22 09:48:45,319 [INFO]   [1] pr_auc    : 0.4809  ← PRIMARY
+2026-05-22 09:48:45,319 [INFO]   [2] f1_score  : 0.3981  ← BALANCE
+2026-05-22 09:48:45,319 [INFO]   [3] recall    : 0.5125  ← CRITICAL (safety)
+2026-05-22 09:48:45,319 [INFO]   Threshold     : 0.45
+2026-05-22 09:48:45,319 [INFO]   MLflow Run ID : bf17d1eded004ed99ed87d697fde3e8f
+2026-05-22 09:48:45,321 [INFO] 
+✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
+2026-05-22 09:52:10,763 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 09:52:10,763 [INFO] Resampling      : SMOTETomek
+2026-05-22 09:52:10,764 [INFO] Threshold       : 0.45
+2026-05-22 09:52:10,784 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 09:52:10,785 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 09:52:10,787 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 09:52:10,787 [INFO] 
+=================================================================
+2026-05-22 09:52:10,787 [INFO] RUN: manual_run
+2026-05-22 09:52:10,787 [INFO] =================================================================
+2026-05-22 09:52:10,787 [INFO] Menerapkan SMOTETomek...
+2026-05-22 09:52:10,788 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 09:52:10,806 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 10:05:21,493 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 10:05:21,495 [INFO] Resampling      : SMOTETomek
+2026-05-22 10:05:21,495 [INFO] Threshold       : 0.45
+2026-05-22 10:05:21,517 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 10:05:21,519 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 10:05:21,521 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 10:05:21,522 [INFO] 
+=================================================================
+2026-05-22 10:05:21,522 [INFO] RUN: manual_run
+2026-05-22 10:05:21,522 [INFO] =================================================================
+2026-05-22 10:05:21,522 [INFO] Menerapkan SMOTETomek...
+2026-05-22 10:05:21,523 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 10:05:21,547 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 10:09:19,897 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 10:09:19,897 [INFO] Resampling      : SMOTETomek
+2026-05-22 10:09:19,897 [INFO] Threshold       : 0.45
+2026-05-22 10:09:19,916 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 10:09:19,917 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 10:09:19,919 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 10:09:19,919 [INFO] 
+=================================================================
+2026-05-22 10:09:19,919 [INFO] RUN: manual_run
+2026-05-22 10:09:19,919 [INFO] =================================================================
+2026-05-22 10:09:19,919 [INFO] Menerapkan SMOTETomek...
+2026-05-22 10:09:19,920 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 10:09:19,938 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 10:16:15,200 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 10:16:15,200 [INFO] Resampling      : SMOTETomek
+2026-05-22 10:16:15,200 [INFO] Threshold       : 0.45
+2026-05-22 10:16:15,219 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 10:16:15,220 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 10:16:15,222 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 10:16:15,222 [INFO] 
+=================================================================
+2026-05-22 10:16:15,222 [INFO] RUN: manual_run
+2026-05-22 10:16:15,222 [INFO] =================================================================
+2026-05-22 10:16:15,222 [INFO] Menerapkan SMOTETomek...
+2026-05-22 10:16:15,222 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 10:16:15,249 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 10:22:00,731 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-22 10:22:00,732 [INFO] Resampling      : SMOTETomek
+2026-05-22 10:22:00,733 [INFO] Threshold       : 0.45
+2026-05-22 10:22:00,752 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-22 10:22:00,753 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-22 10:22:00,755 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-22 10:22:00,755 [INFO] 
+=================================================================
+2026-05-22 10:22:00,755 [INFO] RUN: manual_run
+2026-05-22 10:22:00,755 [INFO] =================================================================
+2026-05-22 10:22:00,755 [INFO] Menerapkan SMOTETomek...
+2026-05-22 10:22:00,755 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-22 10:22:00,778 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-22 10:22:09,682 [INFO] 
+--- Hasil Run: manual_run ---
+2026-05-22 10:22:09,683 [INFO]   [1] pr_auc    : 0.4809  ← PRIMARY
+2026-05-22 10:22:09,683 [INFO]   [2] f1_score  : 0.3981  ← BALANCE
+2026-05-22 10:22:09,683 [INFO]   [3] recall    : 0.5125  ← CRITICAL (safety)
+2026-05-22 10:22:09,683 [INFO]   Threshold     : 0.45
+2026-05-22 10:22:09,683 [INFO]   MLflow Run ID : 99ea916c1e8e4cff85354f9b5ca781ff
+2026-05-22 10:22:09,757 [INFO] 
+✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
