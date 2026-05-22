@@ -155,6 +155,53 @@ Untuk menghentikan layanan tanpa menghapus data:
 docker compose stop
 ```
 
+### 7. Model Serving & Horizontal Scaling
+
+Model yang sudah berada di stage **Production** pada MLflow Registry dilayani sebagai REST API menggunakan `mlflow models serve`, dengan simulasi beban tinggi melalui 3 replika container yang didistribusikan oleh Nginx.
+
+**Menjalankan seluruh stack termasuk 3 replika model:**
+
+```bash
+docker compose up -d --scale model-serving=3
+```
+
+**Mengakses endpoint prediksi** melalui `http://localhost:8080/invocations`:
+
+```bash
+curl -X POST http://localhost:8080/invocations \
+  -H "Content-Type: application/json" \
+  -d '{"dataframe_records":[{
+    "mainshock_magnitude": 6.2,
+    "mainshock_depth": 15.0,
+    "jam_sejak_mainshock": 6.0,
+    "count_susulan_1jam": 5,
+    "count_susulan_6jam": 12,
+    "count_susulan_24jam": 18,
+    "max_mag_susulan_6jam": 4.1,
+    "max_mag_susulan_24jam": 4.3,
+    "omori_rate_est": 8.5,
+    "zona_sesar": 1
+  }]}'
+```
+
+Respons: `{"predictions": [1]}` :
+- nilai `1` berarti ada prediksi aftershock signifikan dalam 24 jam ke depan
+- `0` berarti tidak ada.
+
+**Menambah atau mengurangi jumlah replika** (tanpa menghentikan layanan lain):
+
+```bash
+docker compose up -d --scale model-serving=5  # scale up
+docker compose up -d --scale model-serving=2  # scale down
+```
+
+**Memverifikasi replika yang berjalan:**
+
+```bash
+docker compose ps
+```
+
+---
 
 **Nama:** Arif Rahman  
 **NIM:** 235150201111012  
