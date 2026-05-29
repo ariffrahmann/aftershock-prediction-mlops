@@ -1,45 +1,71 @@
 services:
+
+  # Database
   db:
     image: postgres:15
     container_name: gempawas_postgres
     environment:
-      POSTGRES_USER: admin
+      POSTGRES_USER:     admin
       POSTGRES_PASSWORD: password123
-      POSTGRES_DB: mlflow_db
+      POSTGRES_DB:       mlflow_db
     volumes:
       - pg-data:/var/lib/postgresql/data
     networks:
       - gempawas-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U admin -d mlflow_db"]
+      test:     ["CMD-SHELL", "pg_isready -U admin -d mlflow_db"]
       interval: 10s
-      timeout: 5s
-      retries: 5
+      timeout:  5s
+      retries:  5
 
+  # MLflow Tracking Server
   mlflow-server:
     image: python:3.12-slim
     container_name: gempawas_mlflow
-    command: bash -c "pip install --quiet mlflow==3.12.0 psycopg2-binary && mlflow server --backend-store-uri postgresql://admin:password123@db:5432/mlflow_db --default-artifact-root /workspaces/aftershock-prediction-mlops/mlruns/artifacts --host 0.0.0.0 --port 5000"
+    environment:
+      MLFLOW_SERVER_ENABLE_DNS_REBINDING_PROTECTION: "false"
+      MLFLOW_SERVER_ALLOWED_HOSTS: "*"
+      GUNICORN_CMD_ARGS: "--timeout 120"
+    command:
+      - bash
+      - -c
+      - >
+        pip install --quiet --upgrade pip setuptools wheel &&
+        pip install --quiet mlflow==3.12.0 psycopg2-binary &&
+        mlflow server --backend-store-uri postgresql://admin:password123@db:5432/mlflow_db --default-artifact-root /workspaces/mlruns/artifacts --host 0.0.0.0 --port 5000
     ports:
       - "5000:5000"
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - ./mlruns:/workspaces/aftershock-prediction-mlops/mlruns
+      - ./mlruns:/workspaces/mlruns
     networks:
       - gempawas-network
     restart: unless-stopped
+    healthcheck:
+      test:     ["CMD-SHELL", "python -c \"import urllib.request; urllib.request.urlopen('http://localhost:5000/health')\" || exit 1"]
+      interval: 20s
+      timeout:  10s
+      retries:  5
+      start_period: 90s
 
+  # Model Serving (3 replika)
   model-serving:
     image: gempawas-model:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
       MLFLOW_TRACKING_URI: http://mlflow-server:5000
+      MODEL_NAME:          gempawas-aftershock-classifier
+      MODEL_STAGE:         Staging
     expose:
       - "8080"
     depends_on:
-      - mlflow-server
+      mlflow-server:
+        condition: service_healthy
     networks:
       - gempawas-network
     restart: unless-stopped
@@ -47,7 +73,10 @@ services:
       replicas: 3
       restart_policy:
         condition: on-failure
+        delay:     5s
+        max_attempts: 3
 
+  # Nginx Load Balancer
   nginx:
     image: nginx:alpine
     container_name: gempawas_nginx
@@ -61,9 +90,92 @@ services:
       - gempawas-network
     restart: unless-stopped
 
+  # Nginx Prometheus Exporter
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:1.1
+    container_name: gempawas_nginx_exporter
+    command:
+      - "--nginx.scrape-uri=http://nginx:80/stub_status"
+    ports:
+      - "9113:9113"
+    depends_on:
+      - nginx
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
+  # Prometheus
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    container_name: gempawas_prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+      - "--web.console.libraries=/etc/prometheus/console_libraries"
+      - "--web.console.templates=/etc/prometheus/consoles"
+      - "--web.enable-lifecycle"
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      - model-serving
+      - nginx-exporter
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+    healthcheck:
+      test:     ["CMD-SHELL", "wget -qO- http://localhost:9090/-/healthy || exit 1"]
+      interval: 15s
+      timeout:  5s
+      retries:  3
+
+  # Grafana
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: gempawas_grafana
+    environment:
+      GF_SECURITY_ADMIN_USER:         admin
+      GF_SECURITY_ADMIN_PASSWORD:     gempawas123
+      GF_USERS_ALLOW_SIGN_UP:         "false"
+      GF_SERVER_ROOT_URL:             http://localhost:3000
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/gempawas-monitoring.json
+      GF_FEATURE_TOGGLES_ENABLE:      publicDashboards
+      GF_LOG_LEVEL:                   warn
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+    healthcheck:
+      test:     ["CMD-SHELL", "wget -qO- http://localhost:3000/api/health || exit 1"]
+      interval: 20s
+      timeout:  10s
+      retries:  5
+      start_period: 30s
+
+# Networks
 networks:
   gempawas-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
 
+# Volumes
 volumes:
   pg-data:
+    name: gempawas_pg_data
+  prometheus-data:
+    name: gempawas_prometheus_data
+  grafana-data:
+    name: gempawas_grafana_data
