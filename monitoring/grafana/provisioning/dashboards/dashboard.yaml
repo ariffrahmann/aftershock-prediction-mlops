@@ -1,0 +1,13 @@
+# Grafana Dashboard Provisioning
+# Grafana akan otomatis load semua file .json dari folder /dashboards
+# yang dimount ke container saat startup.
+
+apiVersion: 1
+providers:
+  - name: "GempaWas Dashboards"
+    orgId: 1
+    folder: "GempaWas MLOps"
+    type: file
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

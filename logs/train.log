@@ -426,3 +426,26 @@
 2026-05-22 10:22:09,683 [INFO]   MLflow Run ID : 99ea916c1e8e4cff85354f9b5ca781ff
 2026-05-22 10:22:09,757 [INFO] 
 ✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000
+2026-05-29 16:10:06,514 [INFO] Metrik inti     : pr_auc, f1_score, recall
+2026-05-29 16:10:06,523 [INFO] Resampling      : SMOTETomek
+2026-05-29 16:10:06,523 [INFO] Threshold       : 0.45
+2026-05-29 16:10:06,862 [INFO] Loaded features: 2044 rows, 14 cols
+2026-05-29 16:10:06,892 [INFO] TIME-BASED split: train=1533, test=511
+2026-05-29 16:10:06,896 [INFO] Distribusi train → pos=239 (15.6%), neg=1294 (84.4%)
+2026-05-29 16:10:06,896 [INFO] 
+=================================================================
+2026-05-29 16:10:06,896 [INFO] RUN: prediction_gempa
+2026-05-29 16:10:06,896 [INFO] =================================================================
+2026-05-29 16:10:06,896 [INFO] Menerapkan SMOTETomek...
+2026-05-29 16:10:06,897 [INFO]   Sebelum: pos=239, neg=1294
+2026-05-29 16:10:06,991 [INFO]   Sesudah : pos=1213, neg=1213
+2026-05-29 16:10:30,107 [INFO] 
+--- Hasil Run: prediction_gempa ---
+2026-05-29 16:10:30,107 [INFO]   [1] pr_auc    : 0.4809  ← PRIMARY
+2026-05-29 16:10:30,107 [INFO]   [2] f1_score  : 0.3981  ← BALANCE
+2026-05-29 16:10:30,107 [INFO]   [3] recall    : 0.5125  ← CRITICAL (safety)
+2026-05-29 16:10:30,107 [INFO]   Threshold     : 0.45
+2026-05-29 16:10:30,108 [INFO]   MLflow Run ID : d99d7ea2b70a46bf85687888ad5be641
+2026-05-29 16:10:30,108 [INFO]   ✓ Model registered: 'gempawas-aftershock-classifier'
+2026-05-29 16:10:30,186 [INFO] 
+✓ Selesai. Buka MLflow UI: mlflow ui --host 0.0.0.0 --port 5000

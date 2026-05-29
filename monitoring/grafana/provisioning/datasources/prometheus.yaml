@@ -1,0 +1,14 @@
+# Grafana Datasource Provisioning
+# File ini di-mount ke container Grafana dan dibaca saat startup.
+# Grafana otomatis menambahkan Prometheus sebagai datasource tanpa konfigurasi
+# manual via UI.
+
+apiVersion: 1
+datasources:
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    uid: prometheus-gempawas
+    isDefault: true
+    editable: true
