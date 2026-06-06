@@ -1,0 +1,70 @@
+groups:
+  # SKENARIO A — Performance-based triggers
+  # Memantau sinyal proxy degradasi model dari metrik serving real-time.
+  - name: gempawas_performance
+    rules:
+      - alert: GempaWasModelRecallLow
+        expr: |
+          (
+            sum(rate(model_predictions_total{predicted_class="1"}[15m]))
+            /
+            clamp_min(sum(rate(model_predictions_total[15m])), 0.001)
+          ) < 0.05
+        for: 10m
+        labels:
+          severity: critical
+          scenario: performance
+        annotations:
+          summary: "Positive-prediction rate sangat rendah (proxy recall turun)"
+          value: "{{ $value | printf \"%.3f\" }}"
+          description: >
+            Rasio prediksi kelas positif < 5% selama 10 menit. Model Production
+            diduga gagal menangkap gempa susulan. Memicu Continuous Training.
+
+      - alert: GempaWasHighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status_code=~"5.."}[5m]))
+            /
+            clamp_min(sum(rate(http_requests_total[5m])), 0.001)
+          ) > 0.10
+        for: 5m
+        labels:
+          severity: warning
+          scenario: performance
+        annotations:
+          summary: "Error rate 5xx > 10%"
+          value: "{{ $value | printf \"%.3f\" }}"
+
+  # SKENARIO B — Data-drift triggers
+  # Pergeseran rata-rata skor prediksi = indikasi distribusi input bergeser.
+  - name: gempawas_data_drift
+    rules:
+      - alert: GempaWasPredictionDrift
+        expr: |
+          abs(
+            avg_over_time(model_prediction_score[30m])
+            -
+            avg_over_time(model_prediction_score[6h] offset 30m)
+          ) > 0.20
+        for: 15m
+        labels:
+          severity: critical
+          scenario: data_drift
+        annotations:
+          summary: "Rata-rata skor prediksi bergeser > 0.20 (data drift)"
+          value: "{{ $value | printf \"%.3f\" }}"
+          description: >
+            Distribusi skor prediksi 30 menit terakhir berbeda jauh dari 6 jam
+            sebelumnya. Indikasi data drift pada fitur input. Memicu Continuous
+            Training untuk verifikasi PSI dan retraining bila perlu.
+
+      # Alert administratif: model serving down (tidak ada scrape)
+      - alert: GempaWasModelServingDown
+        expr: up{job="model-serving"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          scenario: availability
+        annotations:
+          summary: "Model serving endpoint tidak terjangkau Prometheus"

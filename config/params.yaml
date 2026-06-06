@@ -16,7 +16,6 @@ seismic:
   prediction_window_hours: 24     # prediksi probabilitas untuk 24 jam ke depan
   mainshock_isolation_days: 7     # mainshock harus tidak didahului M>=5 dalam 7 hari
 
-# Omori's Law constants (default; bisa di-fit per zona)
 omori:
   K: 10.0
   c: 0.1
@@ -34,7 +33,7 @@ ingestion:
 # Training
 
 training:
-  test_year: 2025                # data dari tahun ini ke atas = test set
+  test_year: 2025              
   random_state: 42
   cv_folds: 3
   scoring: "average_precision"
@@ -72,7 +71,7 @@ training:
 # Model promotion
 promotion:
   champion_metric: "pr_auc"
-  min_improvement: 0.02           # challenger harus >= +2% PR-AUC
+  min_improvement: 0.02           # model baru harus >= +2% PR-AUC
   model_name: "gempawas-production"
 
 # Serving
@@ -88,3 +87,41 @@ ci_thresholds:
   recall_min: 0.40
   model_name: "gempawas-aftershock-classifier"
   auto_register_stage: "Staging"
+
+# Continuous Training — closed-loop MLOps
+# Threshold pemicu retraining otomatis & aturan promosi.
+continuous_training:
+  model_name: "gempawas-aftershock-classifier"
+
+  # --- Skenario A: Performance-based trigger ---
+  # Dipantau oleh Prometheus alert (monitoring/alert_rules.yml). 
+  performance:
+    recall_min: 0.40            # recall < 0.40 → model dianggap "membusuk"
+    pr_auc_min: 0.45            # PR-AUC minimum yang dapat diterima di Production
+    f1_degradation_pct: 0.10    # turun > 10% relatif dari baseline → trigger
+    positive_rate_min: 0.05     # proxy real-time recall di serving (alert rule)
+
+  # --- Skenario B: Data-based trigger (PSI) ---
+  data_drift:
+    psi_warn: 0.10              # 0.10–0.25 = drift moderate (pantau)
+    psi_critical: 0.25          # >= 0.25 = drift signifikan → retraining
+    monitored_features:
+      - mainshock_magnitude
+      - mainshock_depth
+      - jam_sejak_mainshock
+      - count_susulan_6jam
+      - count_susulan_24jam
+      - max_mag_susulan_24jam
+      - omori_rate_est
+
+  # --- Skenario C: Schedule-based trigger ---
+  schedule:
+    cron: "0 17 * * 0"          # tiap Minggu 00:00 WIB (17:00 UTC Sabtu)
+    only_if_new_data: true      # retraining jika ada data baru di DVC
+
+  # --- Aturan promosi model lama vs model baru  ---
+  promotion:
+    primary_metric: "pr_auc"
+    min_improvement: 0.02       # model baru harus >= +0.02 PR-AUC dari model lama
+    recall_tolerance: 0.02      # recall tidak boleh turun > 0.02 (guardrail safety)
+    recall_floor: 0.40          # jika model lama recall < 0.40 → override promote model baru

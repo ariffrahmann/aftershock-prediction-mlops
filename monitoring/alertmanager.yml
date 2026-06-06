@@ -1,0 +1,30 @@
+global:
+  resolve_timeout: 5m
+
+# Routing: semua alert CT (scenario performance/data_drift) 
+# diteruskan ke webhook bridge yang akan memanggil GitHub repository_dispatch.
+route:
+  receiver: "default"
+  group_by: ["alertname"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+  routes:
+    - receiver: "ct-webhook"
+      matchers:
+        - scenario =~ "performance|data_drift"
+      continue: false
+
+receivers:
+  - name: "default"
+  - name: "ct-webhook"
+    webhook_configs:
+      # ct-webhook-bridge service di docker-compose (port 9000)
+      - url: "http://ct-webhook-bridge:9000/alert"
+        send_resolved: false
+
+inhibit_rules:
+  # Jika serving down, jangan spam alert performance/drift
+  - source_matchers: [scenario = "availability"]
+    target_matchers: [scenario =~ "performance|data_drift"]
+    equal: ["job"]
