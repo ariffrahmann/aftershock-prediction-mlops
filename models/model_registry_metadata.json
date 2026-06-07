@@ -1,18 +1,32 @@
 {
-  "model_name": "gempawas-aftershock-classifier",
-  "primary_metric": "pr_auc",
-  "production_model": {
+  "current_staging": {
     "model_name": "gempawas-aftershock-classifier",
-    "version": 2,
-    "stage": "Production",
-    "run_id": "ef276740129b4cfcb689ba7d1873c4e1",
+    "version": 1,
+    "stage": "Staging",
+    "promoted_at": "2026-06-07T01:43:22.765152+00:00",
+    "mlflow_run_id": "34c65c01c61d4ee891c5520865a39d46",
+    "git_commit": "8c1b73a1bf0b",
+    "git_branch": "feat/lk12",
     "metrics": {
-      "pr_auc": 0.5829,
-      "f1_score": 0.5736,
-      "recall": 0.8043
+      "pr_auc": 0.4995
     },
-    "promoted_at": "2026-06-06T23:00:21.886171+00:00",
-    "promoted_by_trigger": "data_drift",
-    "workflow_run_id": "local"
-  }
+    "promoted_by": "ariffrahmann",
+    "workflow_run_id": "27079369094"
+  },
+  "history": [
+    {
+      "model_name": "gempawas-aftershock-classifier",
+      "version": 1,
+      "stage": "Staging",
+      "promoted_at": "2026-06-07T01:43:22.765152+00:00",
+      "mlflow_run_id": "34c65c01c61d4ee891c5520865a39d46",
+      "git_commit": "8c1b73a1bf0b",
+      "git_branch": "feat/lk12",
+      "metrics": {
+        "pr_auc": 0.4995
+      },
+      "promoted_by": "ariffrahmann",
+      "workflow_run_id": "27079369094"
+    }
+  ]
 }
