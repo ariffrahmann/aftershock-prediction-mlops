@@ -201,6 +201,25 @@ docker compose up -d --scale model-serving=2  # scale down
 docker compose ps
 ```
 
+### 8. Continuous Training (CT)
+
+Sistem dapat melatih ulang model secara otomatis melalui workflow
+`.github/workflows/continuous-training.yaml`. Terdapat dua skenario pemicu
+dengan ambang batas (threshold) berikut:
+
+| Skenario | Pemicu | Ambang Batas |
+|----------|--------|--------------|
+| **A — Data Drift** | Distribusi fitur bergeser (PSI) | PSI fitur ≥ `0.25`, WARNING pada `0.10–0.25` |
+| **B — Schedule** | Jadwal rutin mingguan | cron `0 17 * * 0` (Minggu 00:00 WIB) |
+
+**Penjelasan ambang:**
+- **PSI ≥ 0.25** — menandakan pergeseran distribusi data yang signifikan terhadap data acuan.
+- **PR-AUC ≥ 0.45** — metrik utama di bawah ini model dinyatakan *decay*.
+
+**Aturan promosi:** model baru (*challenger*) dipromosikan ke Production **hanya jika**
+PR-AUC-nya ≥ champion + `0.02` dan recall tidak turun lebih dari `0.02`. Seluruh nilai
+ambang terpusat di `config/params.yaml` bagian `continuous_training`.
+
 ---
 
 **Nama:** Arif Rahman  
