@@ -14,6 +14,7 @@ env:
   F1_THRESHOLD: "0.35"
   RECALL_THRESHOLD: "0.40"
   MODEL_NAME: "gempawas-aftershock-classifier"
+  MLFLOW_ALLOW_FILE_STORE: "true"
 
 jobs:
   # STAGE 1: AUTOMATED TESTING
