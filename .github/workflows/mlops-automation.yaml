@@ -5,7 +5,7 @@ on:
     branches: [main, master, feat/lk08, "feat/**"]
   pull_request:
     branches: [main, master]
-  workflow_dispatch:  # bisa trigger manual dari GitHub UI
+  workflow_dispatch:  
 
 # Threshold
 env:

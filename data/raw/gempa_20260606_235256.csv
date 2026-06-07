@@ -1,0 +1,33 @@
+event_id,source,time_utc,latitude,longitude,depth_km,magnitude,magnitude_type,place,felt_intensity,status,ingested_at
+BMKG-2026-05-14T17:53:15+00:00-6.7,BMKG-terkini,2026-05-14T17:53:15+00:00,-6.09,130.56,163.0,6.7,M,224 km BaratLaut TANIMBAR,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-20T10:28:50+00:00-5.2,BMKG-terkini,2026-05-20T10:28:50+00:00,-8.09,119.21,12.0,5.2,M,65 km TimurLaut KOTA-BIMA-NTB,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-20T23:12:56+00:00-5.0,BMKG-terkini,2026-05-20T23:12:56+00:00,-6.06,130.47,137.0,5.0,M,231 km BaratLaut TANIMBAR,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-22T01:05:09+00:00-5.8,BMKG-terkini,2026-05-22T01:05:09+00:00,1.07,126.18,26.0,5.8,M,124 km Tenggara BITUNG-SULUT,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-23T12:40:26+00:00-5.3,BMKG-terkini,2026-05-23T12:40:26+00:00,-4.67,102.57,17.0,5.3,M,45 km BaratDaya BENGKULUSELATAN,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-25T10:23:58+00:00-5.2,BMKG-terkini,2026-05-25T10:23:58+00:00,-7.55,128.64,136.0,5.2,M,115 km TimurLaut MALUKUBRTDAYA,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-25T20:39:21+00:00-5.7,BMKG-terkini,2026-05-25T20:39:21+00:00,1.06,126.19,22.0,5.7,M,125 km Tenggara BITUNG-SULUT,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-25T22:03:43+00:00-5.1,BMKG-terkini,2026-05-25T22:03:43+00:00,-3.96,133.99,10.0,5.1,M,45 km Tenggara KAIMANA-PAPUABRT,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-26T08:39:10+00:00-5.1,BMKG-terkini,2026-05-26T08:39:10+00:00,-9.01,113.84,10.0,5.1,M,93 km Tenggara JEMBER-JATIM,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-05-28T01:46:21+00:00-5.1,BMKG-terkini,2026-05-28T01:46:21+00:00,-10.55,124.49,10.0,5.1,M,86 km Tenggara TIMORTENGAHSEL-NTT,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-01T23:01:16+00:00-5.4,BMKG-terkini,2026-06-01T23:01:16+00:00,-1.94,138.95,10.0,5.4,M,22 km Tenggara SARMI-PAPUA,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-02T23:46:48+00:00-3.4,BMKG-dirasakan,2026-06-02T23:46:48+00:00,-3.54,122.27,6.0,3.4,M,Pusat gempa berada di darat 18 km timur Konawe Utara,II-III Konawe Utara,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-02T23:53:16+00:00-3.5,BMKG-dirasakan,2026-06-02T23:53:16+00:00,-3.56,122.25,9.0,3.5,M,Pusat gempa berada di laut 16 km timur Konawe Utara,II-III Konawe Utara,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T01:00:38+00:00-3.3,BMKG-dirasakan,2026-06-03T01:00:38+00:00,-3.54,122.26,5.0,3.3,M,Pusat gempa berada di darat 17 km timur Konawe Utara,II-III Konawe Utara,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T01:51:45+00:00-2.9,BMKG-dirasakan,2026-06-03T01:51:45+00:00,-4.63,122.38,4.0,2.9,M,Pusat gempa berada di laut 22 km barat laut Muna Barat,"II Muna Barat , II Konawe Selatan",reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T03:29:40+00:00-3.0,BMKG-dirasakan,2026-06-03T03:29:40+00:00,-3.52,122.29,10.0,3.0,M,Pusat gempa berada di laut 20 km timur Konawe Utara,II Konawe Utara,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T10:18:23+00:00-2.9,BMKG-dirasakan,2026-06-03T10:18:23+00:00,-4.11,121.81,5.0,2.9,M,Pusat gempa berada di darat 14 km barat daya Kolaka Timur,"III Kolaka Timur, III Konawe Selatan",reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T16:55:38+00:00-5.3,BMKG-terkini,2026-06-03T16:55:38+00:00,-8.24,120.14,164.0,5.3,M,39 km TimurLaut LABUANBAJO-NTT,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-03T22:58:46+00:00-3.2,BMKG-dirasakan,2026-06-03T22:58:46+00:00,-3.92,122.59,4.0,3.2,M,Pusat gempa berada di darat 11 km timur laut Kendari,III Kendari,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-04T04:37:30+00:00-4.8,BMKG-dirasakan,2026-06-04T04:37:30+00:00,-0.8,133.32,19.0,4.8,M,Pusat gempa berada di darat 30 km timur laut Kebar-Manokwari,II-III Kab. Manokwari,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-04T23:28:33+00:00-5.6,BMKG-terkini,2026-06-04T23:28:33+00:00,-0.18,123.13,91.0,5.6,M,70 km TimurLaut PULAUPUAH-SULTENG,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-05T07:02:39+00:00-3.2,BMKG-dirasakan,2026-06-05T07:02:39+00:00,-3.53,122.26,8.0,3.2,M,Pusat gempa berada di darat 16 km Timur KONAWEUTARA,III Konawe Utara,reviewed,2026-06-06T23:52:56+00:00
+us7000sqv3,USGS,2026-06-05T14:38:13+00:00,-6.3596,105.0804,63.559,4.5,mb,"82 km W of Labuan, Indonesia",,reviewed,2026-06-06T23:52:56+00:00
+us7000sqvc,USGS,2026-06-05T14:47:21+00:00,5.3746,126.0008,111.167,4.6,mb,"59 km E of Sarangani, Philippines",,reviewed,2026-06-06T23:52:56+00:00
+us7000sqvk,USGS,2026-06-05T15:57:05+00:00,-7.6807,127.2652,154.139,5.3,mww,"97 km NNE of Lospalos, Timor Leste",,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-05T15:57:07+00:00-6.0,BMKG-terkini,2026-06-05T15:57:07+00:00,-7.81,127.32,120.0,6.0,M,64 km BaratLaut MALUKUBRTDAYA,,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-05T21:35:38+00:00-3.9,BMKG-dirasakan,2026-06-05T21:35:38+00:00,0.54,99.56,5.0,3.9,M,Pusat gempa berada didarat 37km Selatan Mandailing Natal,III Mandailing Natal,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-06T10:18:30+00:00-2.8,BMKG-dirasakan,2026-06-06T10:18:30+00:00,-5.34,104.73,3.0,2.8,M,Pusat gempa berada di darat 16 km utara Tanggamus,II-III Tanggamus,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-06T12:57:14+00:00-3.5,BMKG-dirasakan,2026-06-06T12:57:14+00:00,-6.92,107.12,7.0,3.5,M,Pusat gempa berada di darat 11 km barat daya Kab. Cianjur,"II-III Cianjur, II-III Cibeber, II-III Cilaku, II-III Warungkondang, II-III Cugenang, II-III Campaka, II Sukabumi",reviewed,2026-06-06T23:52:56+00:00
+us7000sr4k,USGS,2026-06-06T18:56:47+00:00,0.0113,125.2243,35.0,5.2,mww,"100 km ESE of Modisi, Indonesia",,reviewed,2026-06-06T23:52:56+00:00
+BMKG-2026-06-06T18:56:47+00:00-5.7,BMKG-terkini,2026-06-06T18:56:47+00:00,-0.26,125.07,10.0,5.7,M,124 km Tenggara TUTUYAN-BOLTIM-SULUT,,reviewed,2026-06-06T23:52:56+00:00
+us7000sr5i,USGS,2026-06-06T22:38:35+00:00,-8.6648,126.5825,10.0,5.2,mb,"22 km E of Venilale, Timor Leste",,reviewed,2026-06-06T23:52:56+00:00
