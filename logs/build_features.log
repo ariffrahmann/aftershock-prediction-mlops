@@ -25,3 +25,85 @@ Name: count, dtype: int64
 2026-05-14 14:26:11,260 [INFO] Output Parquet : data/processed/features.parquet (2044 rows, 23.5 KB)
 2026-05-14 14:26:11,260 [INFO] Output CSV     : data/processed/features.csv
 2026-05-14 14:26:11,260 [INFO] ============================================================
+2026-06-06 23:54:07,468 [INFO] Loading 4 processed files
+2026-06-06 23:54:07,546 [INFO] Total unique events: 3917
+2026-06-06 23:54:07,547 [INFO] Rentang waktu: 2024-05-14 15:36:36+00:00 s.d. 2026-06-06 22:38:35+00:00
+2026-06-06 23:54:07,549 [INFO] Distribusi magnitude:
+count    3917.000000
+mean        4.485091
+std         0.378363
+min         2.000000
+25%         4.300000
+50%         4.400000
+75%         4.600000
+max         7.400000
+2026-06-06 23:54:07,550 [INFO] Candidates M>=5.0: 402 events
+2026-06-06 23:54:08,017 [INFO] Mainshocks teridentifikasi: 307
+2026-06-06 23:54:15,460 [INFO] Training dataset: 2149 rows (= 307 mainshock × 7 snapshot_times)
+2026-06-06 23:54:15,463 [INFO] Distribusi label:
+label_susulan_besar_24jam
+0    1829
+1     320
+Name: count, dtype: int64
+2026-06-06 23:54:15,463 [INFO] Positive ratio: 14.89% (320 / 2149)
+2026-06-06 23:54:15,512 [INFO] ============================================================
+2026-06-06 23:54:15,512 [INFO] FEATURES BERHASIL DIBANGUN
+2026-06-06 23:54:15,513 [INFO] ============================================================
+2026-06-06 23:54:15,513 [INFO] Output Parquet : data/processed/features.parquet (2149 rows, 24.1 KB)
+2026-06-06 23:54:15,513 [INFO] Output CSV     : data/processed/features.csv
+2026-06-06 23:54:15,513 [INFO] ============================================================
+2026-06-07 01:07:25,552 [INFO] Loading 4 processed files
+2026-06-07 01:07:25,615 [INFO] Total unique events: 3870
+2026-06-07 01:07:25,615 [INFO] Rentang waktu: 2024-05-14 15:36:36+00:00 s.d. 2026-06-06 22:38:35+00:00
+2026-06-07 01:07:25,618 [INFO] Distribusi magnitude:
+count    3870.000000
+mean        4.481860
+std         0.376399
+min         2.000000
+25%         4.200000
+50%         4.400000
+75%         4.600000
+max         7.400000
+2026-06-07 01:07:25,619 [INFO] Candidates M>=5.0: 389 events
+2026-06-07 01:07:25,949 [INFO] Mainshocks teridentifikasi: 303
+2026-06-07 01:07:32,600 [INFO] Training dataset: 2121 rows (= 303 mainshock × 7 snapshot_times)
+2026-06-07 01:07:32,601 [INFO] Distribusi label:
+label_susulan_besar_24jam
+0    1801
+1     320
+Name: count, dtype: int64
+2026-06-07 01:07:32,602 [INFO] Positive ratio: 15.09% (320 / 2121)
+2026-06-07 01:07:32,645 [INFO] ============================================================
+2026-06-07 01:07:32,646 [INFO] FEATURES BERHASIL DIBANGUN
+2026-06-07 01:07:32,646 [INFO] ============================================================
+2026-06-07 01:07:32,646 [INFO] Output Parquet : data/processed/features.parquet (2121 rows, 23.9 KB)
+2026-06-07 01:07:32,646 [INFO] Output CSV     : data/processed/features.csv
+2026-06-07 01:07:32,646 [INFO] ============================================================
+2026-06-07 01:14:17,342 [INFO] Loading 4 processed files
+2026-06-07 01:14:17,410 [INFO] Deduplikasi lintas-sumber: 3870 → 3851 baris (19 duplikat BMKG/USGS dibuang)
+2026-06-07 01:14:17,411 [INFO] Total unique events: 3851
+2026-06-07 01:14:17,411 [INFO] Rentang waktu: 2024-05-14 15:36:36+00:00 s.d. 2026-06-06 22:38:35+00:00
+2026-06-07 01:14:17,413 [INFO] Distribusi magnitude:
+count    3851.000000
+mean        4.478447
+std         0.372451
+min         2.000000
+25%         4.200000
+50%         4.400000
+75%         4.600000
+max         7.400000
+2026-06-07 01:14:17,414 [INFO] Candidates M>=5.0: 375 events
+2026-06-07 01:14:17,700 [INFO] Mainshocks teridentifikasi: 297
+2026-06-07 01:14:24,363 [INFO] Training dataset: 2079 rows (= 297 mainshock × 7 snapshot_times)
+2026-06-07 01:14:24,363 [INFO] Distribusi label:
+label_susulan_besar_24jam
+0    1762
+1     317
+Name: count, dtype: int64
+2026-06-07 01:14:24,364 [INFO] Positive ratio: 15.25% (317 / 2079)
+2026-06-07 01:14:24,416 [INFO] ============================================================
+2026-06-07 01:14:24,416 [INFO] FEATURES BERHASIL DIBANGUN
+2026-06-07 01:14:24,416 [INFO] ============================================================
+2026-06-07 01:14:24,417 [INFO] Output Parquet : data/processed/features.parquet (2079 rows, 23.5 KB)
+2026-06-07 01:14:24,417 [INFO] Output CSV     : data/processed/features.csv
+2026-06-07 01:14:24,417 [INFO] ============================================================

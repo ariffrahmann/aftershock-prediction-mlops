@@ -211,6 +211,45 @@ def deduplicate(df: pd.DataFrame) -> pd.DataFrame:
     logger.info("Deduplikasi: %d → %d baris", before, len(df))
     return df.reset_index(drop=True)
 
+# Step 6b: Deduplikasi lintas-sumber (BMKG vs USGS untuk gempa fisik yang sama)
+def deduplicate_cross_source(df: pd.DataFrame,
+                             time_tol_sec: int = 90,
+                             geo_tol_deg: float = 1.0) -> pd.DataFrame:
+
+    if df.empty or "time_utc" not in df.columns:
+        return df
+
+    before = len(df)
+    df = df.sort_values("time_utc").reset_index(drop=True)
+    df["_rank"] = df["source"].apply(
+        lambda s: 0 if str(s).upper().startswith("USGS") else 1
+    )
+    times = pd.to_datetime(df["time_utc"]).values
+    keep = [True] * len(df)
+
+    for i in range(len(df)):
+        if not keep[i]:
+            continue
+        for j in range(i + 1, len(df)):
+            if not keep[j]:
+                continue
+            dt = abs((times[j] - times[i]) / np.timedelta64(1, "s"))
+            if dt > time_tol_sec:
+                break  # sudah terurut waktu → sisanya pasti lebih jauh
+            dlat = abs(float(df.at[j, "latitude"]) - float(df.at[i, "latitude"]))
+            dlon = abs(float(df.at[j, "longitude"]) - float(df.at[i, "longitude"]))
+            if dlat <= geo_tol_deg and dlon <= geo_tol_deg:
+                # buang yang rank lebih besar (non-USGS)
+                if df.at[i, "_rank"] <= df.at[j, "_rank"]:
+                    keep[j] = False
+                else:
+                    keep[i] = False
+
+    out = df[keep].drop(columns=["_rank"]).reset_index(drop=True)
+    removed = before - len(out)
+    logger.info("Deduplikasi lintas-sumber: %d → %d baris (%d duplikat BMKG/USGS dibuang)",
+                before, len(out), removed)
+    return out
 
 # Step 7: Tambah fitur turunan dasar
 def add_derived_features(df: pd.DataFrame) -> pd.DataFrame:
@@ -303,6 +342,7 @@ def preprocess_file(input_path: Path) -> pd.DataFrame:
 
     df = filter_anomalies(df)
     df = deduplicate(df)
+    df = deduplicate_cross_source(df)
     df = add_derived_features(df)
 
     # Simpan hasil

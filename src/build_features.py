@@ -68,6 +68,43 @@ def omori_rate(t_hours: float) -> float:
     """Estimasi laju susulan dari Omori's Law (per hari)."""
     t_days = max(t_hours / 24.0, 0.001)
     return OMORI_K / ((t_days + OMORI_C) ** OMORI_P)
+    
+def deduplicate_cross_source(df: pd.DataFrame,
+                             time_tol_sec: int = 90,
+                             geo_tol_deg: float = 1.0) -> pd.DataFrame:
+
+    if df.empty or "time_utc" not in df.columns:
+        return df
+
+    before = len(df)
+    df = df.sort_values("time_utc").reset_index(drop=True)
+    df["_rank"] = df["source"].apply(
+        lambda s: 0 if str(s).upper().startswith("USGS") else 1
+    )
+    times = pd.to_datetime(df["time_utc"]).values
+    keep = [True] * len(df)
+
+    for i in range(len(df)):
+        if not keep[i]:
+            continue
+        for j in range(i + 1, len(df)):
+            if not keep[j]:
+                continue
+            dt = abs((times[j] - times[i]) / np.timedelta64(1, "s"))
+            if dt > time_tol_sec:
+                break  # sudah terurut waktu → sisanya pasti lebih jauh
+            dlat = abs(float(df.at[j, "latitude"]) - float(df.at[i, "latitude"]))
+            dlon = abs(float(df.at[j, "longitude"]) - float(df.at[i, "longitude"]))
+            if dlat <= geo_tol_deg and dlon <= geo_tol_deg:
+                if df.at[i, "_rank"] <= df.at[j, "_rank"]:
+                    keep[j] = False
+                else:
+                    keep[i] = False
+
+    out = df[keep].drop(columns=["_rank"]).reset_index(drop=True)
+    logger.info("Deduplikasi lintas-sumber: %d → %d baris (%d duplikat BMKG/USGS dibuang)",
+                before, len(out), before - len(out))
+    return out
 
 
 # Step 1: Load all processed events
@@ -90,6 +127,7 @@ def load_all_processed_events(processed_dir: Path = PROCESSED_DIR) -> pd.DataFra
     events = events.drop_duplicates(subset=["event_id"], keep="first")
     events["time_utc"] = pd.to_datetime(events["time_utc"], errors="coerce", utc=True)
     events = events.dropna(subset=["time_utc"]).reset_index(drop=True)
+    events = deduplicate_cross_source(events)
     events = events.sort_values("time_utc").reset_index(drop=True)
 
     logger.info("Total unique events: %d", len(events))
@@ -186,7 +224,6 @@ def build_training_row(mainshock: pd.Series, events: pd.DataFrame,
         "count_susulan_24jam": count_in_last_hours(24),
         "max_mag_susulan_6jam": max_mag_in_last_hours(6),
         "max_mag_susulan_24jam": max_mag_in_last_hours(24),
-        # Fitur fisika
         "omori_rate_est": omori_rate(snapshot_hours),
         # LABEL (target binary classification)
         "label_susulan_besar_24jam": label,

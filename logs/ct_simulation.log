@@ -1,0 +1,87 @@
+2026-06-06 22:59:52,937 [INFO] 
+==================================================================
+2026-06-06 22:59:52,937 [INFO]   LANGKAH 0 — Persiapan data acuan & data baru (shifted)
+2026-06-06 22:59:52,937 [INFO] ==================================================================
+2026-06-06 22:59:53,735 [INFO] Data acuan (reference): 2044 baris | positif=319 (15.6%)
+2026-06-06 22:59:53,755 [INFO] Data baru (shifted)   : 700 baris | positif=243 (34.7%)
+2026-06-06 22:59:53,793 [INFO] Eval set (realita baru): 250 baris | positif=92
+2026-06-06 22:59:53,793 [INFO] 
+==================================================================
+2026-06-06 22:59:53,794 [INFO]   LANGKAH 1 — Latih CHAMPION pada distribusi LAMA, register v1 → Production
+2026-06-06 22:59:53,794 [INFO] ==================================================================
+2026-06-06 23:00:10,618 [INFO] Champion run 4e525acc3ecc
+2026-06-06 23:00:10,618 [INFO] Champion metrics pada DATA BARU: pr_auc=0.3061 f1=0.5428 recall=1.0000
+2026-06-06 23:00:10,700 [INFO] ✓ Champion = v1 (alias 'champion')
+2026-06-06 23:00:10,701 [INFO] 
+==================================================================
+2026-06-06 23:00:10,701 [INFO]   LANGKAH 2 — DETEKSI DRIFT (PSI) reference vs data baru
+2026-06-06 23:00:10,701 [INFO] ==================================================================
+2026-06-06 23:00:11,509 [INFO] ================================================================
+  CT DRIFT GATE — Population Stability Index per Fitur
+================================================================
+  Reference : data/processed/sim_reference.parquet  (2044 baris)
+  Current   : data/processed/sim_current.parquet  (700 baris)
+  Threshold : WARN>=0.1  CRITICAL>=0.25
+
+  Fitur                    PSI        Severity  
+  ------------------------ ---------- ----------
+  mainshock_magnitude      2.4239     🔴 CRITICAL
+  mainshock_depth          3.0497     🔴 CRITICAL
+  jam_sejak_mainshock      1.1263     🔴 CRITICAL
+  count_susulan_6jam       0.0000     🟢 STABLE
+  count_susulan_24jam      4.0419     🔴 CRITICAL
+  max_mag_susulan_24jam    0.1216     🟡 WARNING
+  omori_rate_est           9.6291     🔴 CRITICAL
+
+  Max PSI  : 9.6291
+  Mean PSI : 2.9132
+  Fitur CRITICAL: 5
+================================================================
+  🔴 DRIFT SIGNIFIKAN — Continuous Training DIPICU
+================================================================
+{"should_retrain": true, "max_psi": 9.6291, "mean_psi": 2.9132, "n_critical": 5}
+2026-06-06 23:00:11,510 [INFO] 
+==================================================================
+2026-06-06 23:00:11,510 [INFO]   LANGKAH 3 — RETRAIN CHALLENGER pada data acuan + data baru
+2026-06-06 23:00:11,510 [INFO] ==================================================================
+2026-06-06 23:00:11,512 [INFO] Dataset retraining: 2494 baris (acuan 2044 + baru 450)
+2026-06-06 23:00:18,461 [INFO] Challenger run ef276740129b
+2026-06-06 23:00:18,462 [INFO] Challenger metrics pada DATA BARU: pr_auc=0.5829 f1=0.5736 recall=0.8043
+2026-06-06 23:00:18,462 [INFO] 
+==================================================================
+2026-06-06 23:00:18,462 [INFO]   LANGKAH 4 — EVALUASI KOMPARATIF champion vs challenger + PROMOSI
+2026-06-06 23:00:18,462 [INFO] ==================================================================
+2026-06-06 23:00:22,417 [INFO] ================================================================
+  EVALUASI KOMPARATIF — CHAMPION vs CHALLENGER
+================================================================
+  Model      : gempawas-aftershock-classifier
+  Primary    : pr_auc  (min_improvement=+0.02)
+  Recall floor: 0.4  tolerance=0.02
+
+✓ Challenger di-register sebagai v2
+  Champion  : v1  pr_auc=0.3061 recall=1.0000
+  Challenger:  v2  pr_auc=0.5829 recall=0.8043
+
+    Δ PR-AUC = +0.2767 (challenger 0.5829 vs champion 0.3061); butuh >= +0.02
+    Δ Recall = -0.1957 (challenger 0.8043 vs champion 1.0000); toleransi -0.02
+    ⚠ OVERRIDE DECAY: champion PR-AUC 0.3061 < lantai 0.45 (champion telah decay & recall-nya menyesatkan). Challenger PR-AUC jauh lebih baik & recall 0.8043 >= floor 0.4 → PROMOTE.
+
+================================================================
+✓ alias 'champion' → v2
+✓ stage v2 → Production (versi lama diarsipkan)
+✓ models/model_registry_metadata.json diperbarui → champion v2
+  ✅ v2 dipromosikan ke Production
+================================================================
+2026-06-06 23:00:22,417 [INFO] /workspaces/aftershock-prediction-mlops/scripts/promote_if_better.py:175: FutureWarning: ``mlflow.tracking.client.MlflowClient.transition_model_version_stage`` is deprecated since 2.9.0. Model registry stages will be removed in a future major release. To learn more about the deprecation of model registry stages, see our migration guide here: https://mlflow.org/docs/latest/model-registry.html#migrating-from-stages
+  client.transition_model_version_stage(
+2026-06-06 23:00:22,417 [INFO] 
+==================================================================
+2026-06-06 23:00:22,417 [INFO]   RINGKASAN — Sebelum vs Sesudah Retraining (pada distribusi baru)
+2026-06-06 23:00:22,417 [INFO] ==================================================================
+2026-06-06 23:00:22,418 [INFO]   Metrik     Champion     Challenger   Δ         
+2026-06-06 23:00:22,418 [INFO]   ----------------------------------------------
+2026-06-06 23:00:22,418 [INFO]   pr_auc     0.3061       0.5829       +0.2767
+2026-06-06 23:00:22,418 [INFO]   f1_score   0.5428       0.5736       +0.0309
+2026-06-06 23:00:22,418 [INFO]   recall     1.0000       0.8043       -0.1957
+2026-06-06 23:00:22,419 [INFO] 
+✓ Simulasi selesai. Lihat logs/ct_simulation.log & logs/ct_before_after.json

@@ -118,3 +118,185 @@
 2026-05-14 14:10:03,056 [INFO]   Zona sesar         : {'Subduksi_Maluku': 1734, 'Lainnya_Papua': 1190, 'Subduksi_Jawa': 410, 'Sesar_Sumatra': 358, 'Sesar_Palu_Koro': 191}
 2026-05-14 14:10:03,056 [INFO] ==================================================
 2026-05-14 14:10:03,057 [INFO] Preprocessing selesai.
+2026-06-06 23:53:21,055 [INFO] ============================================================
+2026-06-06 23:53:21,056 [INFO] GempaWas — Preprocessing dimulai
+2026-06-06 23:53:21,056 [INFO] ============================================================
+2026-06-06 23:53:21,057 [INFO] Mode --all: memproses 4 file.
+2026-06-06 23:53:21,057 [INFO] --------------------------------------------------
+2026-06-06 23:53:21,057 [INFO] Memproses file: gempa_20260512_110527.csv
+2026-06-06 23:53:21,057 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_110527.csv
+2026-06-06 23:53:21,062 [INFO] Loaded: 30 baris, 12 kolom
+2026-06-06 23:53:21,062 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-06 23:53:21,062 [INFO] Normalisasi tipe data...
+2026-06-06 23:53:21,081 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-06-06 23:53:21,085 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-06-06 23:53:21,087 [INFO] Deduplikasi: 30 → 30 baris
+2026-06-06 23:53:21,087 [INFO] Menambah fitur turunan dasar...
+2026-06-06 23:53:21,338 [INFO] Data processed disimpan:
+2026-06-06 23:53:21,338 [INFO]   CSV     : data/processed/gempa_20260512_110527_processed.csv
+2026-06-06 23:53:21,338 [INFO]   Parquet : data/processed/gempa_20260512_110527_processed.parquet
+2026-06-06 23:53:21,338 [INFO] ==================================================
+2026-06-06 23:53:21,338 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_110527.csv
+2026-06-06 23:53:21,338 [INFO]   Total baris bersih : 30
+2026-06-06 23:53:21,339 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-06-06 23:53:21,339 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-06-06 23:53:21,339 [INFO]   Sumber data        : ['USGS', 'BMKG-terkini', 'BMKG-dirasakan']
+2026-06-06 23:53:21,340 [INFO]   Zona sesar         : {'Lainnya_Papua': 11, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-06-06 23:53:21,340 [INFO] ==================================================
+2026-06-06 23:53:21,340 [INFO] --------------------------------------------------
+2026-06-06 23:53:21,341 [INFO] Memproses file: gempa_20260512_153811.csv
+2026-06-06 23:53:21,341 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_153811.csv
+2026-06-06 23:53:21,343 [INFO] Loaded: 30 baris, 12 kolom
+2026-06-06 23:53:21,343 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-06 23:53:21,343 [INFO] Normalisasi tipe data...
+2026-06-06 23:53:21,354 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-06-06 23:53:21,356 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-06-06 23:53:21,358 [INFO] Deduplikasi: 30 → 30 baris
+2026-06-06 23:53:21,358 [INFO] Menambah fitur turunan dasar...
+2026-06-06 23:53:21,373 [INFO] Data processed disimpan:
+2026-06-06 23:53:21,373 [INFO]   CSV     : data/processed/gempa_20260512_153811_processed.csv
+2026-06-06 23:53:21,374 [INFO]   Parquet : data/processed/gempa_20260512_153811_processed.parquet
+2026-06-06 23:53:21,374 [INFO] ==================================================
+2026-06-06 23:53:21,374 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_153811.csv
+2026-06-06 23:53:21,374 [INFO]   Total baris bersih : 30
+2026-06-06 23:53:21,374 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-06-06 23:53:21,375 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-06-06 23:53:21,375 [INFO]   Sumber data        : ['USGS', 'BMKG-terkini', 'BMKG-dirasakan']
+2026-06-06 23:53:21,375 [INFO]   Zona sesar         : {'Lainnya_Papua': 11, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-06-06 23:53:21,375 [INFO] ==================================================
+2026-06-06 23:53:21,376 [INFO] --------------------------------------------------
+2026-06-06 23:53:21,376 [INFO] Memproses file: gempa_20260514_140913.csv
+2026-06-06 23:53:21,376 [INFO] Memuat data mentah dari: data/raw/gempa_20260514_140913.csv
+2026-06-06 23:53:21,396 [INFO] Loaded: 3883 baris, 12 kolom
+2026-06-06 23:53:21,397 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-06 23:53:21,397 [INFO] Normalisasi tipe data...
+2026-06-06 23:53:21,425 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 3883)
+2026-06-06 23:53:21,430 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 3883
+2026-06-06 23:53:21,436 [INFO] Deduplikasi: 3883 → 3883 baris
+2026-06-06 23:53:21,437 [INFO] Menambah fitur turunan dasar...
+2026-06-06 23:53:21,667 [INFO] Data processed disimpan:
+2026-06-06 23:53:21,667 [INFO]   CSV     : data/processed/gempa_20260514_140913_processed.csv
+2026-06-06 23:53:21,667 [INFO]   Parquet : data/processed/gempa_20260514_140913_processed.parquet
+2026-06-06 23:53:21,668 [INFO] ==================================================
+2026-06-06 23:53:21,668 [INFO] RINGKASAN PREPROCESSING: gempa_20260514_140913.csv
+2026-06-06 23:53:21,668 [INFO]   Total baris bersih : 3883
+2026-06-06 23:53:21,669 [INFO]   Rentang magnitude  : 2.0 – 7.4
+2026-06-06 23:53:21,669 [INFO]   Rentang kedalaman  : 0.0 – 619.7 km
+2026-06-06 23:53:21,670 [INFO]   Sumber data        : ['USGS', 'BMKG-dirasakan', 'BMKG-terkini']
+2026-06-06 23:53:21,671 [INFO]   Zona sesar         : {'Subduksi_Maluku': 1734, 'Lainnya_Papua': 1190, 'Subduksi_Jawa': 410, 'Sesar_Sumatra': 358, 'Sesar_Palu_Koro': 191}
+2026-06-06 23:53:21,672 [INFO] ==================================================
+2026-06-06 23:53:21,673 [INFO] --------------------------------------------------
+2026-06-06 23:53:21,673 [INFO] Memproses file: gempa_20260606_235256.csv
+2026-06-06 23:53:21,673 [INFO] Memuat data mentah dari: data/raw/gempa_20260606_235256.csv
+2026-06-06 23:53:21,676 [INFO] Loaded: 32 baris, 12 kolom
+2026-06-06 23:53:21,677 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-06 23:53:21,679 [INFO] Normalisasi tipe data...
+2026-06-06 23:53:21,703 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 32)
+2026-06-06 23:53:21,706 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 32
+2026-06-06 23:53:21,709 [INFO] Deduplikasi: 32 → 32 baris
+2026-06-06 23:53:21,709 [INFO] Menambah fitur turunan dasar...
+2026-06-06 23:53:21,726 [INFO] Data processed disimpan:
+2026-06-06 23:53:21,726 [INFO]   CSV     : data/processed/gempa_20260606_235256_processed.csv
+2026-06-06 23:53:21,726 [INFO]   Parquet : data/processed/gempa_20260606_235256_processed.parquet
+2026-06-06 23:53:21,726 [INFO] ==================================================
+2026-06-06 23:53:21,726 [INFO] RINGKASAN PREPROCESSING: gempa_20260606_235256.csv
+2026-06-06 23:53:21,727 [INFO]   Total baris bersih : 32
+2026-06-06 23:53:21,727 [INFO]   Rentang magnitude  : 2.8 – 6.7
+2026-06-06 23:53:21,727 [INFO]   Rentang kedalaman  : 3.0 – 164.0 km
+2026-06-06 23:53:21,728 [INFO]   Sumber data        : ['USGS', 'BMKG-terkini', 'BMKG-dirasakan']
+2026-06-06 23:53:21,728 [INFO]   Zona sesar         : {'Subduksi_Maluku': 11, 'Lainnya_Papua': 8, 'Sesar_Palu_Koro': 7, 'Subduksi_Jawa': 4, 'Sesar_Sumatra': 2}
+2026-06-06 23:53:21,729 [INFO] ==================================================
+2026-06-06 23:53:21,729 [INFO] Preprocessing selesai.
+2026-06-07 01:07:14,691 [INFO] ============================================================
+2026-06-07 01:07:14,693 [INFO] GempaWas — Preprocessing dimulai
+2026-06-07 01:07:14,693 [INFO] ============================================================
+2026-06-07 01:07:14,693 [INFO] Mode --all: memproses 4 file.
+2026-06-07 01:07:14,693 [INFO] --------------------------------------------------
+2026-06-07 01:07:14,693 [INFO] Memproses file: gempa_20260512_110527.csv
+2026-06-07 01:07:14,694 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_110527.csv
+2026-06-07 01:07:14,811 [INFO] Loaded: 30 baris, 12 kolom
+2026-06-07 01:07:14,812 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-07 01:07:14,823 [INFO] Normalisasi tipe data...
+2026-06-07 01:07:14,902 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-06-07 01:07:14,905 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-06-07 01:07:14,924 [INFO] Deduplikasi: 30 → 30 baris
+2026-06-07 01:07:14,926 [INFO] Deduplikasi lintas-sumber: 30 → 29 baris (1 duplikat BMKG/USGS dibuang)
+2026-06-07 01:07:14,927 [INFO] Menambah fitur turunan dasar...
+2026-06-07 01:07:15,352 [INFO] Data processed disimpan:
+2026-06-07 01:07:15,352 [INFO]   CSV     : data/processed/gempa_20260512_110527_processed.csv
+2026-06-07 01:07:15,352 [INFO]   Parquet : data/processed/gempa_20260512_110527_processed.parquet
+2026-06-07 01:07:15,352 [INFO] ==================================================
+2026-06-07 01:07:15,352 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_110527.csv
+2026-06-07 01:07:15,352 [INFO]   Total baris bersih : 29
+2026-06-07 01:07:15,353 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-06-07 01:07:15,353 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-06-07 01:07:15,353 [INFO]   Sumber data        : ['BMKG-terkini', 'BMKG-dirasakan', 'USGS']
+2026-06-07 01:07:15,354 [INFO]   Zona sesar         : {'Lainnya_Papua': 10, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-06-07 01:07:15,354 [INFO] ==================================================
+2026-06-07 01:07:15,354 [INFO] --------------------------------------------------
+2026-06-07 01:07:15,354 [INFO] Memproses file: gempa_20260512_153811.csv
+2026-06-07 01:07:15,354 [INFO] Memuat data mentah dari: data/raw/gempa_20260512_153811.csv
+2026-06-07 01:07:15,356 [INFO] Loaded: 30 baris, 12 kolom
+2026-06-07 01:07:15,357 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-07 01:07:15,357 [INFO] Normalisasi tipe data...
+2026-06-07 01:07:15,375 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 30)
+2026-06-07 01:07:15,380 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 30
+2026-06-07 01:07:15,385 [INFO] Deduplikasi: 30 → 30 baris
+2026-06-07 01:07:15,393 [INFO] Deduplikasi lintas-sumber: 30 → 29 baris (1 duplikat BMKG/USGS dibuang)
+2026-06-07 01:07:15,393 [INFO] Menambah fitur turunan dasar...
+2026-06-07 01:07:15,413 [INFO] Data processed disimpan:
+2026-06-07 01:07:15,413 [INFO]   CSV     : data/processed/gempa_20260512_153811_processed.csv
+2026-06-07 01:07:15,414 [INFO]   Parquet : data/processed/gempa_20260512_153811_processed.parquet
+2026-06-07 01:07:15,414 [INFO] ==================================================
+2026-06-07 01:07:15,414 [INFO] RINGKASAN PREPROCESSING: gempa_20260512_153811.csv
+2026-06-07 01:07:15,414 [INFO]   Total baris bersih : 29
+2026-06-07 01:07:15,414 [INFO]   Rentang magnitude  : 2.0 – 6.0
+2026-06-07 01:07:15,414 [INFO]   Rentang kedalaman  : 2.0 – 199.0 km
+2026-06-07 01:07:15,414 [INFO]   Sumber data        : ['BMKG-terkini', 'BMKG-dirasakan', 'USGS']
+2026-06-07 01:07:15,415 [INFO]   Zona sesar         : {'Lainnya_Papua': 10, 'Subduksi_Maluku': 9, 'Sesar_Sumatra': 4, 'Subduksi_Jawa': 4, 'Sesar_Palu_Koro': 2}
+2026-06-07 01:07:15,416 [INFO] ==================================================
+2026-06-07 01:07:15,416 [INFO] --------------------------------------------------
+2026-06-07 01:07:15,416 [INFO] Memproses file: gempa_20260514_140913.csv
+2026-06-07 01:07:15,416 [INFO] Memuat data mentah dari: data/raw/gempa_20260514_140913.csv
+2026-06-07 01:07:15,501 [INFO] Loaded: 3883 baris, 12 kolom
+2026-06-07 01:07:15,502 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-07 01:07:15,502 [INFO] Normalisasi tipe data...
+2026-06-07 01:07:15,534 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 3883)
+2026-06-07 01:07:15,537 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 3883
+2026-06-07 01:07:15,541 [INFO] Deduplikasi: 3883 → 3883 baris
+2026-06-07 01:07:15,574 [INFO] Deduplikasi lintas-sumber: 3883 → 3820 baris (63 duplikat BMKG/USGS dibuang)
+2026-06-07 01:07:15,574 [INFO] Menambah fitur turunan dasar...
+2026-06-07 01:07:15,727 [INFO] Data processed disimpan:
+2026-06-07 01:07:15,727 [INFO]   CSV     : data/processed/gempa_20260514_140913_processed.csv
+2026-06-07 01:07:15,727 [INFO]   Parquet : data/processed/gempa_20260514_140913_processed.parquet
+2026-06-07 01:07:15,728 [INFO] ==================================================
+2026-06-07 01:07:15,728 [INFO] RINGKASAN PREPROCESSING: gempa_20260514_140913.csv
+2026-06-07 01:07:15,728 [INFO]   Total baris bersih : 3820
+2026-06-07 01:07:15,729 [INFO]   Rentang magnitude  : 2.0 – 7.4
+2026-06-07 01:07:15,730 [INFO]   Rentang kedalaman  : 0.0 – 619.7 km
+2026-06-07 01:07:15,730 [INFO]   Sumber data        : ['USGS', 'BMKG-dirasakan']
+2026-06-07 01:07:15,731 [INFO]   Zona sesar         : {'Subduksi_Maluku': 1693, 'Lainnya_Papua': 1179, 'Subduksi_Jawa': 407, 'Sesar_Sumatra': 353, 'Sesar_Palu_Koro': 188}
+2026-06-07 01:07:15,731 [INFO] ==================================================
+2026-06-07 01:07:15,732 [INFO] --------------------------------------------------
+2026-06-07 01:07:15,732 [INFO] Memproses file: gempa_20260606_235256.csv
+2026-06-07 01:07:15,732 [INFO] Memuat data mentah dari: data/raw/gempa_20260606_235256.csv
+2026-06-07 01:07:15,740 [INFO] Loaded: 32 baris, 12 kolom
+2026-06-07 01:07:15,750 [INFO] Kolom: ['event_id', 'source', 'time_utc', 'latitude', 'longitude', 'depth_km', 'magnitude', 'magnitude_type', 'place', 'felt_intensity', 'status', 'ingested_at']
+2026-06-07 01:07:15,750 [INFO] Normalisasi tipe data...
+2026-06-07 01:07:15,780 [INFO] Missing values — drop baris kritis: 0 baris dihapus (sisa: 32)
+2026-06-07 01:07:15,783 [INFO] Filter anomali: 0 baris dihapus (di luar batas valid), sisa: 32
+2026-06-07 01:07:15,785 [INFO] Deduplikasi: 32 → 32 baris
+2026-06-07 01:07:15,789 [INFO] Deduplikasi lintas-sumber: 32 → 30 baris (2 duplikat BMKG/USGS dibuang)
+2026-06-07 01:07:15,789 [INFO] Menambah fitur turunan dasar...
+2026-06-07 01:07:15,805 [INFO] Data processed disimpan:
+2026-06-07 01:07:15,805 [INFO]   CSV     : data/processed/gempa_20260606_235256_processed.csv
+2026-06-07 01:07:15,805 [INFO]   Parquet : data/processed/gempa_20260606_235256_processed.parquet
+2026-06-07 01:07:15,805 [INFO] ==================================================
+2026-06-07 01:07:15,805 [INFO] RINGKASAN PREPROCESSING: gempa_20260606_235256.csv
+2026-06-07 01:07:15,806 [INFO]   Total baris bersih : 30
+2026-06-07 01:07:15,806 [INFO]   Rentang magnitude  : 2.8 – 6.7
+2026-06-07 01:07:15,806 [INFO]   Rentang kedalaman  : 3.0 – 164.0 km
+2026-06-07 01:07:15,806 [INFO]   Sumber data        : ['BMKG-terkini', 'BMKG-dirasakan', 'USGS']
+2026-06-07 01:07:15,807 [INFO]   Zona sesar         : {'Subduksi_Maluku': 9, 'Lainnya_Papua': 8, 'Sesar_Palu_Koro': 7, 'Subduksi_Jawa': 4, 'Sesar_Sumatra': 2}
+2026-06-07 01:07:15,807 [INFO] ==================================================
+2026-06-07 01:07:15,807 [INFO] Preprocessing selesai.

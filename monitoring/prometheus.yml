@@ -6,6 +6,16 @@ global:
     environment: "production"
     project:     "gempawas-aftershock"
 
+# Alerting rules untuk Continuous Training
+rule_files:
+  - "/etc/prometheus/alert_rules.yml"
+
+# Kirim alert yang firing ke Alertmanager
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["alertmanager:9093"]
+
 scrape_configs:
 
   - job_name: "prometheus"

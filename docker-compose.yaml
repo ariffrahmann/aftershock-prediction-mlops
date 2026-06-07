@@ -119,10 +119,12 @@ services:
       - "9090:9090"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
       - prometheus-data:/prometheus
     depends_on:
       - model-serving
       - nginx-exporter
+      - alertmanager
     networks:
       - gempawas-network
     restart: unless-stopped
@@ -163,6 +165,43 @@ services:
       retries:  5
       start_period: 30s
 
+  # Alertmanager — meneruskan alert CT ke webhook bridge
+  alertmanager:
+    image: prom/alertmanager:v0.27.0
+    container_name: gempawas_alertmanager
+    command:
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+      - "--storage.path=/alertmanager"
+    ports:
+      - "9093:9093"
+    volumes:
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - alertmanager-data:/alertmanager
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
+  # CT Webhook Bridge — Alertmanager → GitHub repository_dispatch
+  ct-webhook-bridge:
+    image: python:3.12-slim
+    container_name: gempawas_ct_bridge
+    working_dir: /app
+    command:
+      - bash
+      - -c
+      - "python /app/scripts/ct_webhook_bridge.py"
+    environment:
+      GITHUB_TOKEN: "${GH_DISPATCH_TOKEN:-}"   # set di .env (scope: repo/workflow)
+      GITHUB_REPO:  "${GH_REPO:-ariffrahmann/aftershock-prediction-mlops}"
+      BRIDGE_PORT:  "9000"
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./scripts:/app/scripts:ro
+    networks:
+      - gempawas-network
+    restart: unless-stopped
+
 # Networks
 networks:
   gempawas-network:
@@ -179,3 +218,5 @@ volumes:
     name: gempawas_prometheus_data
   grafana-data:
     name: gempawas_grafana_data
+  alertmanager-data:
+    name: gempawas_alertmanager_data
