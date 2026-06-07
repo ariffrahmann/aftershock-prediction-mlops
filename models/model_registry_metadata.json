@@ -3,10 +3,7 @@
     "model_name": "gempawas-aftershock-classifier",
     "version": 1,
     "stage": "Staging",
-    "promoted_at": "2026-06-07T01:43:22.765152+00:00",
-    "mlflow_run_id": "34c65c01c61d4ee891c5520865a39d46",
-    "git_commit": "8c1b73a1bf0b",
-    "git_branch": "feat/lk12",
+
     "metrics": {
       "pr_auc": 0.4995
     },
